@@ -1,11 +1,11 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { BASE_URL, SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<h2><a href={`${BASE_URL}`}>{SITE_TITLE}</a></h2>
 	</nav>
 </header>
 <style>
