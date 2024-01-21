@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'Programación Web';
 export const SITE_DESCRIPTION = 'Un blog sobre programación web';
-export const BASE_URL = '/programacion';
+export const BASE_URL = '';

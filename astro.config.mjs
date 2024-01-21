@@ -5,7 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://sebasala.github.io',
-	base: '/programacion',
+	site: 'https://shan.lat',
 	integrations: [mdx(), sitemap()],
 });
