@@ -4,7 +4,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { BASE_URL } from 'src/consts';
 import BaseLayout from './BaseLayout.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'development' | 'marketing'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
