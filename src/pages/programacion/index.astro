@@ -7,12 +7,16 @@ import BaseLayout from 'src/layouts/BaseLayout.astro';
 const devPosts = (await getCollection('programacion')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-const title = 'Programación';
-const description = 'Artículos sobre programación, desarrollo web y más.';
+const title = 'Explorando el Código: Tutoriales y Trucos de Programación en Node.js';
+const description = 'Sumérgete en el fascinante universo de la programación con nuestras guías detalladas y tutoriales centrados en Node.js. Desde conceptos básicos hasta técnicas avanzadas, descubre cómo dar vida a tu código con creatividad y eficiencia.';
 ---
 
 <BaseLayout title={title} description={description}>
 	<main>
+		<div>
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</div>
 		<section>
 			<ul>
 				{
@@ -20,7 +24,7 @@ const description = 'Artículos sobre programación, desarrollo web y más.';
 						<li>
 							<a href={`${BASE_URL}/programacion/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
-								<h4 class="title">{post.data.title}</h4>
+								<h2 class="title">{post.data.title}</h2>
 								<p class="date">
 									<FormattedDate date={post.data.pubDate} />
 								</p>
