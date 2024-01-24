@@ -1,35 +1,29 @@
 ---
-import { BASE_URL, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { BASE_URL } from '../../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '@components/FormattedDate.astro';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
 
-const categories = [
-	{
-		slug: 'programacion',
-		data: {
-			title: 'Programación',
-			heroImage: '/blog-placeholder-2.jpg',
-		},
-	},
-	{
-		slug: 'marketing',
-		data: {
-			title: 'Marketing',
-			heroImage: '/blog-placeholder-3.jpg',
-		},
-	},
-]
+const devPosts = (await getCollection('development')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+const title = 'Programación';
+const description = 'Artículos sobre programación, desarrollo web y más.';
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={title} description={description}>
 	<main>
 		<section>
 			<ul>
 				{
-					categories.map((post) => (
+					devPosts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}/${post.slug}/`}>
+							<a href={`${BASE_URL}/programacion/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
 								<h4 class="title">{post.data.title}</h4>
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
 							</a>
 						</li>
 					))
@@ -57,6 +51,17 @@ const categories = [
 		text-decoration: none;
 		transition: 0.2s ease;
 	}
+	ul li:first-child {
+		width: 100%;
+		margin-bottom: 1rem;
+		text-align: center;
+	}
+	ul li:first-child img {
+		width: 100%;
+	}
+	ul li:first-child .title {
+		font-size: 2.369rem;
+	}
 	ul li img {
 		margin-bottom: 0.5rem;
 		border-radius: 12px;
@@ -68,6 +73,10 @@ const categories = [
 		margin: 0;
 		color: rgb(var(--black));
 		line-height: 1;
+	}
+	.date {
+		margin: 0;
+		color: rgb(var(--gray));
 	}
 	ul li a:hover h4,
 	ul li a:hover .date {
@@ -83,6 +92,12 @@ const categories = [
 		ul li {
 			width: 100%;
 			text-align: center;
+		}
+		ul li:first-child {
+			margin-bottom: 0;
+		}
+		ul li:first-child .title {
+			font-size: 1.563em;
 		}
 	}
 </style>

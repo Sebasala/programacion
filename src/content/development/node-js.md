@@ -2,7 +2,7 @@
 title: 'Node.js: El poderoso entorno de ejecución de JavaScript que revolucionó el desarrollo web'
 description: 'En este artículo explico de manera general los conceptos básicos de Node.js. desde que es Node.js hasta las mejores prácticas y consejos sobre Node.js. Pasando por las principales características de Node.js y las ventajas del uso de Node.js'
 pubDate: '2024-01-19'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/blog-placeholder-2.jpg'
 ---
 
 En el mundo rápidamente evolutivo del desarrollo web, Node.js surgió como una fuerza disruptiva que transformó la manera en que se construyen las aplicaciones web. Este entorno de tiempo de ejecución de JavaScript se ha convertido en la opción preferida por desarrolladores y empresas de todo el mundo debido a su poder y versatilidad.
