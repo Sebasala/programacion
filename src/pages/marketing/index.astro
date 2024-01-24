@@ -7,12 +7,16 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 const devPosts = (await getCollection('marketing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-const title = 'Marketing';
-const description = 'Artículos sobre marketing, seo y más.';
+const title = 'CRM y Más: Navegando por el Universo del Marketing en Shan.lat';
+const description = 'Adéntrate en el emocionante mundo del marketing digital en Shan.lat. Descubre estrategias efectivas de CRM, tácticas innovadoras y consejos prácticos para impulsar tu presencia en línea y conquistar audiencias.';
 ---
 
 <BaseLayout title={title} description={description}>
 	<main>
+		<div>
+			<h1>{title}</h1>
+			<p>{description}</p>
+		</div>
 		<section>
 			<ul>
 				{
