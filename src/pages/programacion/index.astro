@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
 
-const devPosts = (await getCollection('development')).sort(
+const devPosts = (await getCollection('programacion')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 const title = 'Programación';
