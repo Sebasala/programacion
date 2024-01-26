@@ -3,30 +3,36 @@ import { BASE_URL } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
+import { title, shortTitle, description } from './consts';
 
 const devPosts = (await getCollection('programacion')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-const title = 'Explorando el Código: Tutoriales y Trucos de Programación en Node.js';
-const description = 'Sumérgete en el fascinante universo de la programación con nuestras guías detalladas y tutoriales centrados en Node.js. Desde conceptos básicos hasta técnicas avanzadas, descubre cómo dar vida a tu código con creatividad y eficiencia.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout shortTitle={shortTitle} description={description} title={title}>
 	<main>
 		<div>
-			<h1>{title}</h1>
-			<p>{description}</p>
+			<h1>
+				<span class="eyebrow">Aprende </span>
+				{shortTitle}:
+				<span class="below"> Artículos y Guías en Nuestro Blog | Shan.lat</span>
+			</h1>
 		</div>
 		<section>
+			<h2>Útimos artículos sobre desarrollo de software</h2>
 			<ul>
 				{
 					devPosts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}/programacion/${post.slug}/`}>
+							<a href={`${BASE_URL}/desarrollo-de-software/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
 								<h2 class="title">{post.data.title}</h2>
 								<p class="date">
 									<FormattedDate date={post.data.pubDate} />
+								</p>
+								<p class="description">
+									{post.data.description}
 								</p>
 							</a>
 						</li>
@@ -34,9 +40,24 @@ const description = 'Sumérgete en el fascinante universo de la programación co
 				}
 			</ul>
 		</section>
+		<section>
+			<h2>Tu destino definitivo para Aprender y Dominar la Programación</h2>
+			<p>Bienvenido a nuestro blog, donde exploramos el apasionante mundo de la programación y el desarrollo de software. Aquí encontrarás una amplia variedad de recursos, desde tutoriales paso a paso hasta artículos informativos y noticias frescas sobre las últimas tendencias en tecnología. Únete a nuestra comunidad de apasionados por la programación y descubre consejos prácticos, trucos y estrategias para perfeccionar tus habilidades y alcanzar tus metas en el emocionante campo del desarrollo de software. ¡Acompáñanos en este viaje de aprendizaje y crecimiento!</p>
+		</section>
 	</main>
 </BaseLayout>
 <style>
+	h1 {
+		text-align: center;
+		margin-bottom: 5rem;
+	}
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+	section {
+		margin-bottom: 5rem;
+	}
 	main {
 		width: 960px;
 	}
@@ -88,6 +109,17 @@ const description = 'Sumérgete en el fascinante universo de la programación co
 	}
 	ul a:hover img {
 		box-shadow: var(--box-shadow);
+	}
+	.eyebrow,
+	.below {
+		display: block;
+		color: gray;
+	}
+	.eyebrow {
+		font-size: 2rem;
+	}
+	.below {
+		font-size: 1rem;
 	}
 	@media (max-width: 720px) {
 		ul {

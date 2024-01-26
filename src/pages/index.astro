@@ -6,9 +6,9 @@ const title = 'Explorando el Mundo Digital: Programación y Marketing en Shan.la
 
 const categories = [
 	{
-		slug: 'programacion',
+		slug: 'desarrollo-de-software',
 		data: {
-			title: 'Programación',
+			title: 'Desarrollo de Software',
 			heroImage: '/blog-placeholder-2.jpg',
 		},
 	},
@@ -31,11 +31,11 @@ const categories = [
 		<section>
 			<ul>
 				{
-					categories.map((post) => (
+					categories.map((category) => (
 						<li>
-							<a href={`${BASE_URL}/${post.slug}/`}>
-								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
-								<h4 class="title">{post.data.title}</h4>
+							<a href={`${BASE_URL}/${category.slug}/`}>
+								<img width={720} height={360} src={`${BASE_URL}${category.data.heroImage}`} alt="" />
+								<h4 class="title">{category.data.title}</h4>
 							</a>
 						</li>
 					))

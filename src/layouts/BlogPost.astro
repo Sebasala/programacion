@@ -4,12 +4,12 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { BASE_URL } from 'src/consts';
 import BaseLayout from './BaseLayout.astro';
 
-type Props = CollectionEntry<'development' | 'marketing'>['data'];
+type Props = CollectionEntry<'programacion' | 'marketing'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, shortTitle } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} shortTitle={shortTitle}>
 	<main>
 		<article>
 			<div class="hero-image">
