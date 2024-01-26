@@ -1,11 +1,12 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { BASE_URL, SITE_TITLE } from '../consts';
+import { BASE_URL } from '../consts';
+
+const { shortTitle } = Astro.props;
 ---
 
 <header>
 	<nav>
-		<h2><a href={`/${BASE_URL}`}>{SITE_TITLE}</a></h2>
+		<h2><a href={`${BASE_URL}/desarrollo-de-software`}>{shortTitle}</a></h2>
 	</nav>
 </header>
 <style>
