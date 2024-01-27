@@ -7,11 +7,11 @@ export async function GET(context) {
 	const marketingPosts = await getCollection('marketing');
 	const devItems = devPosts.map((post) => ({
 		...post.data,
-		link: `/programacion/${post.slug}/`,
+		link: `/desarrollo-de-software/${post.slug}/`,
 	}));
 	const marketingItems = marketingPosts.map((post) => ({
 		...post.data,
-		link: `/marketing/${post.slug}/`,
+		link: `/marketing-digital/${post.slug}/`,
 	}));
 	return rss({
 		title: SITE_TITLE,

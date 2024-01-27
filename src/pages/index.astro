@@ -2,8 +2,6 @@
 import { BASE_URL, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
 
-const title = 'Explorando el Mundo Digital: Programación y Marketing en Shan.lat';
-
 const categories = [
 	{
 		slug: 'desarrollo-de-software',
@@ -13,19 +11,19 @@ const categories = [
 		},
 	},
 	{
-		slug: 'marketing',
+		slug: 'marketing-digital',
 		data: {
-			title: 'Marketing',
+			title: 'Marketing Digital',
 			heroImage: '/blog-placeholder-3.jpg',
 		},
 	},
 ]
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} shortTitle={SITE_TITLE} blogUrl="/">
 	<main>
 		<div>
-			<h1>{title}</h1>
+			<h1>{SITE_TITLE}</h1>
 			<p>{SITE_DESCRIPTION}</p>
 		</div>
 		<section>
