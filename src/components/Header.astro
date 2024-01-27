@@ -1,12 +1,12 @@
 ---
 import { BASE_URL } from '../consts';
 
-const { shortTitle } = Astro.props;
+const { shortTitle, blogUrl } = Astro.props;
 ---
 
 <header>
 	<nav>
-		<h2><a href={`${BASE_URL}/desarrollo-de-software`}>{shortTitle}</a></h2>
+		<h2><a href={`${BASE_URL}${blogUrl}`}>{shortTitle}</a></h2>
 	</nav>
 </header>
 <style>

@@ -6,10 +6,10 @@ import BaseLayout from './BaseLayout.astro';
 
 type Props = CollectionEntry<'programacion' | 'marketing'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, shortTitle } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, shortTitle, blogUrl } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} shortTitle={shortTitle}>
+<BaseLayout title={title} description={description} shortTitle={shortTitle} blogUrl={blogUrl}>
 	<main>
 		<article>
 			<div class="hero-image">

@@ -2,31 +2,32 @@
 import { BASE_URL } from '../../consts';
 import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
+import Hero from '@components/Hero.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { title, description, shortTitle, below, blogUrl } from './consts';
 
 const devPosts = (await getCollection('marketing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
-const title = 'CRM y Más: Navegando por el Universo del Marketing en Shan.lat';
-const description = 'Adéntrate en el emocionante mundo del marketing digital en Shan.lat. Descubre estrategias efectivas de CRM, tácticas innovadoras y consejos prácticos para impulsar tu presencia en línea y conquistar audiencias.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} shortTitle={shortTitle} blogUrl={blogUrl}>
 	<main>
-		<div>
-			<h1>{title}</h1>
-			<p>{description}</p>
-		</div>
+		<Hero shortTitle={shortTitle} below={below} />
 		<section>
+			<h2>Últimos artículos de marketing digital</h2>
 			<ul>
 				{
 					devPosts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}/marketing/${post.slug}/`}>
+							<a href={`${BASE_URL}${blogUrl}/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
 								<h4 class="title">{post.data.title}</h4>
 								<p class="date">
 									<FormattedDate date={post.data.pubDate} />
+								</p>
+								<p class="description">
+									{post.data.description}
 								</p>
 							</a>
 						</li>
@@ -34,9 +35,20 @@ const description = 'Adéntrate en el emocionante mundo del marketing digital en
 				}
 			</ul>
 		</section>
+		<section>
+			<h2>¡Bienvenido a Marketing Digital!</h2>
+			<p>Explora el emocionante mundo del marketing digital con nosotros. En nuestro espacio dedicado a la innovación empresarial y las últimas tendencias en línea, te invitamos a descubrir estrategias probadas, consejos prácticos y conocimientos profundos que te ayudarán a alcanzar tus objetivos comerciales en la era digital.</p>
+			<p>Sumérgete en una amplia gama de temas, desde SEO y SEM hasta redes sociales, marketing de contenido, automatización de marketing y más. Nuestro equipo de expertos está aquí para brindarte la orientación que necesitas para destacarte en un mercado cada vez más competitivo.</p>
+			<p>Ya sea que estés buscando aumentar la visibilidad de tu marca, mejorar la participación de tus clientes o maximizar tus conversiones en línea, encontrarás recursos valiosos y perspectivas perspicaces que te inspirarán y te capacitarán para alcanzar el éxito en tu viaje digital.</p>
+			<p>¿Listo para dar el próximo paso en tu estrategia de marketing digital? ¡Únete a nosotros mientras exploramos las últimas tendencias, compartimos mejores prácticas y creamos juntos un futuro digital brillante!</p>
+		</section>
 	</main>
 </BaseLayout>
 <style>
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
 	main {
 		width: 960px;
 	}
