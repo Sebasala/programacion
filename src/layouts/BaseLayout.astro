@@ -3,7 +3,7 @@ import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 
-const { title, shortTitle, description } = Astro.props
+const { title, shortTitle, description, blogUrl } = Astro.props
 ---
 <!doctype html>
 <html lang="es">
@@ -20,7 +20,7 @@ const { title, shortTitle, description } = Astro.props
 		<BaseHead title={title} description={description} />
 	</head>
 	<body>
-		<Header shortTitle={shortTitle} />
+		<Header shortTitle={shortTitle} blogUrl={blogUrl} />
 		<slot />
 		<Footer />
 	</body>
