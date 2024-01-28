@@ -4,16 +4,21 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
 import Hero from '@components/Hero.astro';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
-import { blogKeyword, description, blogPath } from './consts';
+import { 
+	blogKeyword,
+	blogPath,
+	description,
+	subtitle,
+} from './consts';
 
 const devPosts = (await getCollection('programacion')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
-<BaseLayout title={blogKeyword} description={description} blogPath={blogPath} headerText={blogKeyword}>
+<BaseLayout title={`${blogKeyword}: ${subtitle}`} description={description} blogPath={blogPath} headerText={blogKeyword}>
 	<main>
-		<Hero title={blogKeyword} />
+		<Hero title={blogKeyword} subtitle={subtitle} />
 		<section>
 			<h2>Últimos artículos sobre desarrollo de software</h2>
 			<ul>
