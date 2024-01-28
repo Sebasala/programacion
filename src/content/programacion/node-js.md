@@ -1,5 +1,5 @@
 ---
-title: 'Node.js: El poderoso entorno de ejecución de JavaScript que revolucionó el desarrollo de software en la web'
+title: 'Node.js: Revolucionando el Desarrollo Web con JavaScript'
 description: 'En este artículo explico de manera general los conceptos básicos de Node.js. desde que es Node.js hasta las mejores prácticas y consejos sobre Node.js. Pasando por las principales características de Node.js y las ventajas del uso de Node.js'
 pubDate: '2024-01-19'
 heroImage: '/blog-placeholder-2.jpg'

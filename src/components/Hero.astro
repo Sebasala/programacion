@@ -1,28 +1,26 @@
 ---
-const { eyebrow, shortTitle, below } = Astro.props;
+const { eyebrow, title, subtitle } = Astro.props;
 ---
 
-<div>
-  <h1>
-    <span class="eyebrow">{eyebrow}</span>
-    {shortTitle}:
-    <span class="below">{below}</span>
-  </h1>
-</div>
+<h1>
+	{eyebrow ? <span class="eyebrow">{eyebrow}</span> : ''}
+	{title}
+	{subtitle ? <span class="subtitle">{subtitle}</span> : ''}
+</h1>
 <style>
   h1 {
 		text-align: center;
 		margin-bottom: 5rem;
 	}
   .eyebrow,
-	.below {
+	.subtitle {
 		display: block;
 		color: gray;
 	}
 	.eyebrow {
 		font-size: 2rem;
 	}
-	.below {
+	.subtitle {
 		font-size: 1rem;
 	}
 </style>
