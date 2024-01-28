@@ -1,5 +1,3 @@
-import { domainName } from "../consts";
-
 const blogPath = '/desarrollo-de-software';
 const description = 'Explora nuestro blog de desarrollo de software para obtener consejos, tutoriales y recursos que te ayudarán a dominar el arte del desarrollo de aplicaciones y programas.';
 const blogKeyword = 'Desarrollo de Software';
@@ -10,6 +8,4 @@ export {
   blogPath,
   description,
   subtitle,
-  posTitle, 
-  preTitle,
 }
