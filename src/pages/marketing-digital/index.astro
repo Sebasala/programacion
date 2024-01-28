@@ -1,26 +1,26 @@
 ---
-import { BASE_URL } from '../../consts';
+import { BASE_URL } from '../../consts.js';
 import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
 import Hero from '@components/Hero.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { title, description, shortTitle, below, blogUrl } from './consts';
+import { description, blogKeyword, blogPath } from './consts';
 
 const devPosts = (await getCollection('marketing')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
-<BaseLayout title={title} description={description} shortTitle={shortTitle} blogUrl={blogUrl}>
+<BaseLayout title={blogKeyword} description={description} blogPath={blogPath} headerText={blogKeyword}>
 	<main>
-		<Hero shortTitle={shortTitle} below={below} />
+		<Hero title={blogKeyword} />
 		<section>
-			<h2>Últimos artículos de marketing digital</h2>
+			<h2>Últimos artículos de {blogKeyword}</h2>
 			<ul>
 				{
 					devPosts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}${blogUrl}/${post.slug}/`}>
+							<a href={`${BASE_URL}${blogPath}/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
 								<h4 class="title">{post.data.title}</h4>
 								<p class="date">

@@ -1,26 +1,26 @@
 ---
-import { BASE_URL } from '../../consts';
+import { BASE_URL } from '../../consts.js';
 import { getCollection } from 'astro:content';
 import FormattedDate from '@components/FormattedDate.astro';
 import Hero from '@components/Hero.astro';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
-import { title, shortTitle, description, eyebrow, below, blogUrl } from './consts';
+import { blogKeyword, description, blogPath } from './consts';
 
 const devPosts = (await getCollection('programacion')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
 
-<BaseLayout shortTitle={shortTitle} description={description} title={title} blogUrl={blogUrl}>
+<BaseLayout title={blogKeyword} description={description} blogPath={blogPath} headerText={blogKeyword}>
 	<main>
-		<Hero shortTitle={shortTitle} eyebrow={eyebrow} below={below} />
+		<Hero title={blogKeyword} />
 		<section>
 			<h2>Últimos artículos sobre desarrollo de software</h2>
 			<ul>
 				{
 					devPosts.map((post) => (
 						<li>
-							<a href={`${BASE_URL}${blogUrl}/${post.slug}/`}>
+							<a href={`${BASE_URL}${blogPath}/${post.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
 								<h2 class="title">{post.data.title}</h2>
 								<p class="date">
