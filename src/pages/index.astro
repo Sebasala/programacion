@@ -1,7 +1,7 @@
 ---
-import { BASE_URL, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { BASE_URL } from '../consts.js';
 import BaseLayout from 'src/layouts/BaseLayout.astro';
-
+import { title, domainName, description, subtitle } from './consts';
 const categories = [
 	{
 		slug: 'desarrollo-de-software',
@@ -20,29 +20,48 @@ const categories = [
 ]
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} shortTitle={SITE_TITLE} blogUrl="/">
+<BaseLayout title={`${title}: ${subtitle}`} description={description} headerText={domainName}>
 	<main>
 		<div>
-			<h1>{SITE_TITLE}</h1>
-			<p>{SITE_DESCRIPTION}</p>
+			<h1>
+				{title}
+				<span class="subtitle">{subtitle}</span>
+			</h1>
 		</div>
 		<section>
+			<h6>Categorías</h6>
 			<ul>
 				{
 					categories.map((category) => (
 						<li>
 							<a href={`${BASE_URL}/${category.slug}/`}>
 								<img width={720} height={360} src={`${BASE_URL}${category.data.heroImage}`} alt="" />
-								<h4 class="title">{category.data.title}</h4>
+								<h2 class="category-title">{category.data.title}</h2>
 							</a>
 						</li>
 					))
 				}
 			</ul>
 		</section>
+		<section>
+			<h3>¡Bienvenido a Código y Marcas!</h3>
+			<p>Sumérgete en el fascinante mundo digital donde el código y las estrategias de marca convergen para dar forma al futuro. En nuestro blog, exploramos las intersecciones entre el desarrollo de software y el marketing digital, ofreciéndote artículos informativos, tutoriales prácticos y análisis de tendencias.</p>
+			<p>Descubre cómo las últimas tecnologías están transformando el panorama del desarrollo de software y cómo las estrategias innovadoras de marketing digital están impulsando el crecimiento de las marcas en línea. Desde consejos para optimizar tu presencia en la web hasta profundas reflexiones sobre el impacto de la tecnología en nuestra sociedad, estamos aquí para inspirarte y mantenerte actualizado en este emocionante viaje digital.</p>
+			<p>Únete a nuestra comunidad de apasionados por la tecnología, emprendedores digitales y curiosos exploradores mientras navegamos juntos por el vasto universo digital. ¡Prepárate para desafiar tus límites, expandir tu conocimiento y descubrir nuevas posibilidades en cada clic!</p>
+			<p>¡Explora, aprende y crece con nosotros en Código y Marcas!</p>
+		</section>
 	</main>
 </BaseLayout>
 <style>
+	.subtitle {
+		display: block;
+		font-size: 1.5rem;
+		color: gray;
+	}
+
+	.category-title {
+		margin-top: 0;
+	}
 	main {
 		width: 960px;
 	}
@@ -67,11 +86,6 @@ const categories = [
 	}
 	ul li a {
 		display: block;
-	}
-	.title {
-		margin: 0;
-		color: rgb(var(--black));
-		line-height: 1;
 	}
 	ul li a:hover h4,
 	ul li a:hover .date {

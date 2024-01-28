@@ -1,15 +1,19 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
-import { BASE_URL } from 'src/consts';
+import { BASE_URL } from '../consts';
 import BaseLayout from './BaseLayout.astro';
 
-type Props = CollectionEntry<'programacion' | 'marketing'>['data'];
-
-const { title, description, pubDate, updatedDate, heroImage, shortTitle, blogUrl } = Astro.props;
+const { 
+	blogPath,
+	headerText,
+	heroImage,
+	pubDate,
+	title,
+	updatedDate,
+} = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} shortTitle={shortTitle} blogUrl={blogUrl}>
+<BaseLayout headerText={headerText} blogPath={blogPath}>
 	<main>
 		<article>
 			<div class="hero-image">
