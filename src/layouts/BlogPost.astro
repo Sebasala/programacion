@@ -5,6 +5,7 @@ import BaseLayout from './BaseLayout.astro';
 
 const { 
 	blogPath,
+	description,
 	headerText,
 	heroImage,
 	pubDate,
@@ -13,7 +14,7 @@ const {
 } = Astro.props;
 ---
 
-<BaseLayout headerText={headerText} blogPath={blogPath}>
+<BaseLayout headerText={headerText} blogPath={blogPath} title={title} description={description}>
 	<main>
 		<article>
 			<div class="hero-image">
