@@ -1,0 +1,23 @@
+@use 'vars';
+
+@function font-size($level) {
+  $size: 1;
+  @for $i from 0 to $level {
+    $size: $size * vars.$scale;
+  }
+  @return $size * 1rem;
+}
+
+@function line-height($size) {
+  $line-height: vars.$base-line-height;
+  @while $line-height < $size {
+    $line-height: $line-height + vars.$base-line-height;
+  }
+  @return $line-height * 1rem;
+}
+
+@mixin type-size($level) {
+  $size: font-size($level);
+  font-size: $size;
+  line-height: line-height($size);
+}

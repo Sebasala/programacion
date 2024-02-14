@@ -6,47 +6,22 @@ const { text, path } = Astro.props;
 
 <header>
 	<nav>
-		<h2><a href={`${BASE_URL}${path}`}>{text}</a></h2>
+		<a href={`${BASE_URL}${path}`}>{text}</a>
 	</nav>
 </header>
 <style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
+	a {
+		display: inline-block;
+		padding: calc(0.5 * var(--base-line-height)) var(--base-line-height);
+		margin: calc(0.5 * var(--base-line-height)) 0;
+		// TODO: Use a variable for this;
+		transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+		border-radius: 50%;
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-	.social-links,
-	.social-links a {
-		display: flex;
-	}
-	@media (max-width: 720px) {
-		.social-links {
-			display: none;
+		&:hover {
+			background-color: var(--button-hover-background);
+			box-shadow: 20px 10px 20px 0px rgba(0, 0, 0, 0.2);
+			color: var(--link-hover-color-2);
 		}
 	}
 </style>

@@ -1,8 +1,8 @@
 ---
 title: 'Node.js: Revolucionando el Desarrollo Web con JavaScript'
-description: 'En este artículo explico de manera general los conceptos básicos de Node.js. desde que es Node.js hasta las mejores prácticas y consejos sobre Node.js. Pasando por las principales características de Node.js y las ventajas del uso de Node.js'
+description: 'En este artículo explico de manera general los conceptos básicos de Node.js, desde que es hasta las mejores prácticas y consejos. Pasando por las principales características de Node.js y las ventajas de uso.'
 pubDate: '2024-01-19'
-heroImage: '/node-js.png'
+heroImage: '/node-js.svg'
 ---
 
 En el mundo rápidamente evolutivo del desarrollo web, Node.js surgió como una fuerza disruptiva que transformó la manera en que se construyen las aplicaciones web. Este entorno de tiempo de ejecución de JavaScript se ha convertido en la opción preferida por desarrolladores y empresas de todo el mundo debido a su poder y versatilidad.

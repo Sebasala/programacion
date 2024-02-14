@@ -1,0 +1,39 @@
+@use 'vars';
+
+body {
+  margin: 0;
+}
+
+main {
+  padding: 0 vars.$base-line-height * 1rem;
+}
+
+section, nav {
+  margin: 0 auto;
+}
+
+section {
+  max-width: vars.$text-max-width;
+}
+
+nav {
+  max-width: vars.$text-max-width + vars.$base-line-height * 2rem;
+}
+
+pre {
+  padding: vars.$base-line-height * 0.5rem;
+  margin: vars.$base-line-height * 0.5rem 0;
+  border-radius: vars.$base-line-height * 0.5rem;
+}
+
+p {
+  margin: vars.$base-line-height * 1rem 0;
+}
+
+h2, h3, h4, h5, h6 {
+  margin: vars.$base-line-height * 2rem 0 vars.$base-line-height * 1rem;
+}
+
+ol, ul {
+  padding-left: vars.$base-line-height * 1rem;
+}

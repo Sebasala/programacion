@@ -20,9 +20,9 @@ const {
 			<div class="hero-image">
 				{heroImage && <img width={1020} height={510} src={`${BASE_URL}${heroImage}`} alt="" />}
 			</div>
-			<div class="prose">
+			<section class="text">
 				<div class="title">
-					<div class="date">
+					<p class="date">
 						<FormattedDate date={pubDate} />
 						{
 							updatedDate && (
@@ -31,51 +31,29 @@ const {
 								</div>
 							)
 						}
-					</div>
+					</p>
 					<h1>{title}</h1>
-					<hr />
 				</div>
 				<slot />
-			</div>
+			</section>
 		</article>
 	</main>
 </BaseLayout>
 <style>
-	main {
-		width: calc(100% - 2em);
-		max-width: 100%;
-		margin: 0;
-	}
-	.hero-image {
-		width: 100%;
-	}
 	.hero-image img {
-		display: block;
+		max-height: 300px;
 		margin: 0 auto;
-		border-radius: 12px;
-		box-shadow: var(--box-shadow);
-	}
-	.prose {
-		width: 720px;
-		max-width: calc(100% - 2em);
-		margin: auto;
-		padding: 1em;
-		color: rgb(var(--gray-dark));
 	}
 	.title {
-		margin-bottom: 1em;
-		padding: 1em 0;
-		text-align: center;
-		line-height: 1;
-	}
-	.title h1 {
-		margin: 0 0 0.5em 0;
+		position: relative;
+		background-image: linear-gradient(180deg, rgba(100%, 100%, 100%, 0) 0%, var(--light-background) 100%);
+		padding-top: calc(2 * var(--base-line-height));
 	}
 	.date {
-		margin-bottom: 0.5em;
-		color: rgb(var(--gray));
+		margin: 0;
+		text-align: center;
 	}
-	.last-updated-on {
-		font-style: italic;
+	.text {
+		margin-top: calc(-7 * var(--base-line-height));
 	}
 </style>

@@ -7,20 +7,3 @@ const { eyebrow, title, subtitle } = Astro.props;
 	{title}
 	{subtitle ? <span class="subtitle">{subtitle}</span> : ''}
 </h1>
-<style>
-  h1 {
-		text-align: center;
-		margin-bottom: 5rem;
-	}
-  .eyebrow,
-	.subtitle {
-		display: block;
-		color: gray;
-	}
-	.eyebrow {
-		font-size: 2rem;
-	}
-	.subtitle {
-		font-size: 1.5rem;
-	}
-</style>
