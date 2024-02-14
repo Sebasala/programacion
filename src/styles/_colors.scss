@@ -1,0 +1,21 @@
+@use 'vars';
+
+body {
+  background-color: vars.$light-background;
+}
+
+p {
+  color: vars.$text-color;
+}
+
+a {
+  color: vars.$link-color;
+
+  &:hover {
+    color: vars.$link-hover-color;
+  }
+}
+
+strong {
+  color: vars.$strong-color;
+}

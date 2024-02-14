@@ -1,0 +1,11 @@
+@use 'vars';
+
+:root {
+  --base-line-height: #{vars.$base-line-height * 1rem};
+  --button-hover-background: #{vars.$button-hover-background};
+  --light-background: #{vars.$light-background};
+  --lighter-color: #{vars.$lighter-color};
+  --link-hover-color-2: #{vars.$link-hover-color-2};
+  --link-hover-color: #{vars.$link-hover-color};
+  --low-contrast: #{vars.$low-contrast};
+}

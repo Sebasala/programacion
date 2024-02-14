@@ -1,0 +1,27 @@
+// TYPOGRAPHY
+$mobile-base-font-size: 15px;
+$tablet-base-font-size: 20px;
+$scale: 1.2;
+$base-line-height: 1.5;
+$text-max-width: 33rem;
+$font-size-breakpoint: 490px;
+
+// COLORS
+// Pallette
+$enfasis-color: orangered;
+$lighter-color: white;
+$light-color: #cfdfeb;
+$dark-color: #073154;
+$darker-color: #000000;
+
+// Assign colors to elements
+$button-hover-background: $enfasis-color;
+$light-background: $light-color;
+$link-color: $enfasis-color;
+$link-hover-color-2: $lighter-color;
+$link-hover-color: $enfasis-color;
+$strong-color: $darker-color;
+$text-color: $dark-color;
+
+// OPACITY
+$low-contrast: 0.7;
