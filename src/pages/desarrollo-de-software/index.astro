@@ -1,22 +1,22 @@
 ---
-import { BASE_URL } from '../../consts.js';
-import { getCollection } from 'astro:content';
-import FormattedDate from '@components/FormattedDate.astro';
-import Hero from '@components/Hero.astro';
-import BaseLayout from 'src/layouts/BaseLayout.astro';
-import { 
-	blogKeyword,
-	blogPath,
-	description,
-	subtitle,
-} from './consts';
+import { BASE_URL } from "../../consts.js";
+import { blogKeyword, blogPath, description, subtitle } from "./consts";
+import { getCollection } from "astro:content";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import FormattedDate from "@components/FormattedDate.astro";
+import Hero from "@components/Hero.astro";
 
-const devPosts = (await getCollection('programacion')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+const devPosts = (await getCollection("programacion")).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
 
-<BaseLayout title={`${blogKeyword}: ${subtitle}`} description={description} blogPath={blogPath} headerText={blogKeyword}>
+<BaseLayout
+	blogPath={blogPath}
+	description={description}
+	headerText={blogKeyword}
+	title={`${blogKeyword}: ${subtitle}`}
+>
 	<main>
 		<Hero title={blogKeyword} subtitle={subtitle} />
 		<section>
@@ -26,8 +26,14 @@ const devPosts = (await getCollection('programacion')).sort(
 					devPosts.map((post) => (
 						<li>
 							<a href={`${BASE_URL}${blogPath}/${post.slug}/`}>
-								<div class="overlay"></div>
-								<img width={720} height={360} src={`${BASE_URL}${post.data.heroImage}`} alt="" />
+								<div class="overlay" />
+								{/* TODO: Add alt text */}
+								<img
+									width={720}
+									height={360}
+									src={`${BASE_URL}${post.data.heroImage}`}
+									alt=""
+								/>
 								<div class="item-text">
 									<div class="item-heading">
 										<p class="date">
@@ -35,9 +41,7 @@ const devPosts = (await getCollection('programacion')).sort(
 										</p>
 										<h2 class="title">{post.data.title}</h2>
 									</div>
-									<p class="description">
-										{post.data.description}
-									</p>
+									<p class="description">{post.data.description}</p>
 								</div>
 							</a>
 						</li>
@@ -47,40 +51,23 @@ const devPosts = (await getCollection('programacion')).sort(
 		</section>
 		<section>
 			<h2>Tu destino definitivo para Aprender y Dominar la Programación</h2>
-			<p>Bienvenido a desarrollo de software, donde exploramos el apasionante mundo de la programación y el desarrollo de software. Aquí encontrarás una amplia variedad de recursos, desde tutoriales paso a paso hasta artículos informativos y noticias frescas sobre las últimas tendencias en tecnología. Únete a nuestra comunidad de apasionados por la programación y descubre consejos prácticos, trucos y estrategias para perfeccionar tus habilidades y alcanzar tus metas en el emocionante campo del desarrollo de software. ¡Acompáñanos en este viaje de aprendizaje y crecimiento!</p>
+			<p>
+				Bienvenido a desarrollo de software, donde exploramos el apasionante
+				mundo de la programación y el desarrollo de software. Aquí encontrarás
+				una amplia variedad de recursos, desde tutoriales paso a paso hasta
+				artículos informativos y noticias frescas sobre las últimas tendencias
+				en tecnología. Únete a nuestra comunidad de apasionados por la
+				programación y descubre consejos prácticos, trucos y estrategias para
+				perfeccionar tus habilidades y alcanzar tus metas en el emocionante
+				campo del desarrollo de software. ¡Acompáñanos en este viaje de
+				aprendizaje y crecimiento!
+			</p>
 		</section>
 	</main>
 </BaseLayout>
 <style>
-	@property --item-text-background {
-		syntax: "<color>";
-		inherits: false;
-		initial-value: transparent;
-	}
 	a {
 		position: relative;
-		height: 500px;
-		display: block;
-		border-radius: 10%;
-		overflow: hidden;
-
-		&:hover {
-			color: var(--link-hover-color-2);
-
-			p {
-				color: var(--link-hover-color-2);
-				opacity: var(--low-contrast);
-			}
-			.overlay {
-				top: 0;
-				mix-blend-mode: multiply;
-			}
-
-			.item-text {
-				bottom: 0;
-				--item-text-background: var(--button-hover-background);
-			}
-		}
 	}
 
 	p {
@@ -89,29 +76,17 @@ const devPosts = (await getCollection('programacion')).sort(
 	img {
 		max-height: calc(15 * var(--base-line-height));
 	}
-
-	.overlay {
-		background-color: var(--button-hover-background);
-		width: 100%;
-		height: 100%;
-		opacity: 1;
-		position: absolute;
-		top: 100%;
-		transition: top 0.3s;
-		border-radius: 10%;
-	}
 	.item-text {
-		--item-text-background: var(--light-background);
-		position: absolute;
-		bottom: calc(-5 * var(--base-line-height));
-		margin: calc(-12 * var(--base-line-height)) 0 0;
-		transition: --item-text-background 0.3s, bottom 0.3s;
-		border-radius: 10%;
-		padding: var(--base-line-height);
-		background-image: linear-gradient(0deg, var(--item-text-background), transparent);
+		margin: calc(-9 * var(--base-line-height)) 0 0;
 	}
 	.item-heading {
-		padding: calc(7 * var(--base-line-height)) 0 0;
+		position: relative;
+		padding: calc(4 * var(--base-line-height)) var(--base-line-height) 0;
+		background-image: linear-gradient(
+			to top,
+			var(--light-background) 0%,
+			transparent 100%
+		);
 	}
 	.title {
 		margin: 0;
@@ -119,6 +94,10 @@ const devPosts = (await getCollection('programacion')).sort(
 	}
 	.description {
 		position: relative;
+		background-color: var(--light-background);
+		border-top: 1px solid var(--light-background);
+		top: -1px;
+		padding: 0 var(--base-line-height) var(--base-line-height);
 	}
 	ul {
 		padding: 0;
@@ -133,5 +112,80 @@ const devPosts = (await getCollection('programacion')).sort(
 	}
 	.description {
 		margin: 0;
+	}
+
+	@property --item-text-background {
+		syntax: "<color>";
+		inherits: false;
+		initial-value: transparent;
+	}
+	@media (hover: hover) {
+		a {
+			display: block;
+			height: 450px;
+			overflow: hidden;
+			transition: color 0.3s;
+			border-radius: 10%;
+
+			&:hover {
+				color: var(--link-hover-color-2);
+
+				p {
+					color: var(--link-hover-color-2);
+				}
+				.item-text {
+					bottom: 0;
+				}
+
+				.item-heading {
+					--item-text-background: var(--button-hover-background);
+				}
+
+				.description {
+					background-color: var(--button-hover-background);
+					border-top: 1px solid var(--button-hover-background);
+				}
+
+				.overlay {
+					opacity: 1;
+				}
+			}
+		}
+
+		.overlay {
+			background-color: var(--button-hover-background);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			mix-blend-mode: multiply;
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+		.item-text {
+			position: absolute;
+			bottom: calc(-5 * var(--base-line-height));
+			left: 0;
+			right: 0;
+			transition: bottom 0.3s;
+		}
+
+		.item-heading {
+			--item-text-background: var(--light-background);
+			background-image: linear-gradient(
+				to top,
+				var(--item-text-background) 0%,
+				transparent 100%
+			);
+			transition: --item-text-background 0.3s;
+		}
+
+		.description {
+			transition:
+				background-color 0.3s,
+				border-top 0.3s,
+				color 0.3s;
+		}
 	}
 </style>

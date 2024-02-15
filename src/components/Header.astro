@@ -18,10 +18,12 @@ const { text, path } = Astro.props;
 		transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 		border-radius: 50%;
 
-		&:hover {
-			background-color: var(--button-hover-background);
-			box-shadow: 20px 10px 20px 0px rgba(0, 0, 0, 0.2);
-			color: var(--link-hover-color-2);
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--button-hover-background);
+				box-shadow: 20px 10px 20px 0px rgba(0, 0, 0, 0.2);
+				color: var(--link-hover-color-2);
+			}
 		}
 	}
 </style>

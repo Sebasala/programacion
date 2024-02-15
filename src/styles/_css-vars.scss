@@ -1,7 +1,10 @@
 @use 'vars';
 
 :root {
+  // Layout
   --base-line-height: #{vars.$base-line-height * 1rem};
+
+  // Colors
   --button-hover-background: #{vars.$button-hover-background};
   --light-background: #{vars.$light-background};
   --lighter-color: #{vars.$lighter-color};
