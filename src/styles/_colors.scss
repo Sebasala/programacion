@@ -1,21 +1,26 @@
-@use 'vars';
+@use 'vars' as *;
 
 body {
-  background-color: vars.$light-background;
+  background: linear-gradient(to bottom, $light-background, $lighter-background);
 }
 
 p {
-  color: vars.$text-color;
+  color: $text-color;
 }
 
 a {
-  color: vars.$link-color;
+  color: $link-color;
 
   &:hover {
-    color: vars.$link-hover-color;
+    color: $link-hover-color;
   }
 }
 
 strong {
-  color: vars.$strong-color;
+  color: $strong-color;
+}
+
+.subtitle {
+  color: $text-color;
+  opacity: $low-contrast;
 }

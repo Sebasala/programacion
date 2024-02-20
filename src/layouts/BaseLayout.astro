@@ -1,26 +1,30 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
 
-const { title, description, blogPath, headerText } = Astro.props
+const { title, description, blogPath, headerText, withHeader } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="es">
 	<head>
 		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ0JGBWSRT"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ0JGBWSRT"
+		></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
 
-			gtag('config', 'G-KZ0JGBWSRT');
+			gtag("config", "G-KZ0JGBWSRT");
 		</script>
 		<BaseHead title={title} description={description} />
 	</head>
 	<body>
-		<Header text={headerText} path={blogPath ? blogPath : ''} />
+		{withHeader && <Header text={headerText} path={blogPath ? blogPath : ""} />}
 		<slot />
 		<Footer />
 	</body>

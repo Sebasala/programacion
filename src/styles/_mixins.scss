@@ -2,17 +2,21 @@
 
 @function font-size($level) {
   $size: 1;
+
   @for $i from 0 to $level {
     $size: $size * vars.$scale;
   }
+
   @return $size * 1rem;
 }
 
 @function line-height($size) {
-  $line-height: vars.$base-line-height;
+  $line-height: vars.$space;
+
   @while $line-height < $size {
-    $line-height: $line-height + vars.$base-line-height;
+    $line-height: $line-height + vars.$space;
   }
+
   @return $line-height * 1rem;
 }
 

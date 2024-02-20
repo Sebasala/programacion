@@ -1,29 +1,11 @@
 ---
-import { BASE_URL } from '../consts.js';
+import { BASE_URL } from "../consts.js";
 
 const { text, path } = Astro.props;
 ---
 
 <header>
 	<nav>
-		<a href={`${BASE_URL}${path}`}>{text}</a>
+		<a class="button" href={`${BASE_URL}${path}`}>{text}</a>
 	</nav>
 </header>
-<style>
-	a {
-		display: inline-block;
-		padding: calc(0.5 * var(--base-line-height)) var(--base-line-height);
-		margin: calc(0.5 * var(--base-line-height)) 0;
-		// TODO: Use a variable for this;
-		transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-		border-radius: 50%;
-
-		@media (hover: hover) {
-			&:hover {
-				background-color: var(--button-hover-background);
-				box-shadow: 20px 10px 20px 0px rgba(0, 0, 0, 0.2);
-				color: var(--link-hover-color-2);
-			}
-		}
-	}
-</style>

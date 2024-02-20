@@ -1,6 +1,13 @@
 ---
 import { BASE_URL } from "../../consts.js";
-import { blogKeyword, blogPath, description, subtitle } from "./consts";
+import {
+	alt,
+	blogKeyword,
+	blogPath,
+	description,
+	image,
+	subtitle,
+} from "./consts";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
 import FormattedDate from "@components/FormattedDate.astro";
@@ -18,39 +25,38 @@ const devPosts = (await getCollection("programacion")).sort(
 	title={`${blogKeyword}: ${subtitle}`}
 >
 	<main>
-		<Hero title={blogKeyword} subtitle={subtitle} />
+		<Hero title={blogKeyword} subtitle={subtitle} image={image} alt={alt} />
 		<section>
-			<h2>Últimos artículos sobre desarrollo de software</h2>
+			<!-- TODO: Remover todo el contenido quemado -->
+			<h3 class="background-text">Artículos</h3>
 			<ul>
 				{
-					devPosts.map((post) => (
-						<li>
-							<a href={`${BASE_URL}${blogPath}/${post.slug}/`}>
-								<div class="overlay" />
-								{/* TODO: Add alt text */}
-								<img
-									width={720}
-									height={360}
-									src={`${BASE_URL}${post.data.heroImage}`}
-									alt=""
-								/>
+					devPosts.map((post) => {
+						const { data, slug } = post;
+						const { alt, heroImage, pubDate, title, description } = data;
+						return (
+							<li>
+								<img src={`${BASE_URL}${heroImage}`} alt={alt} />
 								<div class="item-text">
 									<div class="item-heading">
 										<p class="date">
-											<FormattedDate date={post.data.pubDate} />
+											<FormattedDate date={pubDate} />
 										</p>
-										<h2 class="title">{post.data.title}</h2>
+										<h2 class="title">{title}</h2>
 									</div>
-									<p class="description">{post.data.description}</p>
+									<p class="description">{description}</p>
+									<p>
+										<a href={`${BASE_URL}${blogPath}/${slug}/`}>Leer</a>
+									</p>
 								</div>
-							</a>
-						</li>
-					))
+							</li>
+						);
+					})
 				}
 			</ul>
 		</section>
 		<section>
-			<h2>Tu destino definitivo para Aprender y Dominar la Programación</h2>
+			<h3>Tu destino definitivo para Aprender y Dominar la Programación</h3>
 			<p>
 				Bienvenido a desarrollo de software, donde exploramos el apasionante
 				mundo de la programación y el desarrollo de software. Aquí encontrarás
@@ -66,126 +72,68 @@ const devPosts = (await getCollection("programacion")).sort(
 	</main>
 </BaseLayout>
 <style>
-	a {
+	section {
+		--section-space: calc(4 * var(--space));
+		margin: var(--section-space) auto var(--section-space);
 		position: relative;
-	}
 
-	p {
-		transition: color 0.3s;
-	}
-	img {
-		max-height: calc(15 * var(--base-line-height));
-	}
-	.item-text {
-		margin: calc(-9 * var(--base-line-height)) 0 0;
-	}
-	.item-heading {
-		position: relative;
-		padding: calc(4 * var(--base-line-height)) var(--base-line-height) 0;
-		background-image: linear-gradient(
-			to top,
-			var(--light-background) 0%,
-			transparent 100%
-		);
-	}
-	.title {
-		margin: 0;
-		padding-bottom: var(--base-line-height);
-	}
-	.description {
-		position: relative;
-		background-color: var(--light-background);
-		border-top: 1px solid var(--light-background);
-		top: -1px;
-		padding: 0 var(--base-line-height) var(--base-line-height);
+		&:has(.background-text) {
+			margin: 0 auto var(--section-space);
+			padding: calc(4 * var(--space)) 0 0;
+		}
 	}
 	ul {
-		padding: 0;
-		margin-left: calc(-1 * var(--base-line-height));
-		width: calc(100% + 2 * var(--base-line-height));
-	}
-	li {
 		list-style: none;
+		padding: 0;
 	}
-	.date {
+
+	li {
+		mix-blend-mode: multiply;
+	}
+
+	img {
+		margin-left: auto;
+		max-height: calc(11 * var(--space));
+	}
+
+	a {
+		font-weight: 700;
+	}
+
+	.background-text {
+		color: var(--background-text-color);
+		font-family: var(--title-font);
+		font-size: var(--font-size-xl);
+		left: calc(-2 * var(--space));
+		line-height: var(--line-height-xl);
 		margin: 0;
+		overflow-wrap: normal;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		width: calc(100% + 3 * var(--space));
 	}
-	.description {
-		margin: 0;
-	}
+	.item-text {
+		--intersection-space: calc(10 * var(--space));
+		background-image: linear-gradient(
+			to top,
+			var(--lighter-background) 40%,
+			transparent
+		);
+		margin-top: calc(-1 * var(--intersection-space));
+		padding: calc(0.5 * var(--intersection-space)) 0 0;
+		position: relative;
 
-	@property --item-text-background {
-		syntax: "<color>";
-		inherits: false;
-		initial-value: transparent;
-	}
-	@media (hover: hover) {
-		a {
-			display: block;
-			height: 450px;
-			overflow: hidden;
-			transition: color 0.3s;
-			border-radius: 10%;
-
-			&:hover {
-				color: var(--link-hover-color-2);
-
-				p {
-					color: var(--link-hover-color-2);
-				}
-				.item-text {
-					bottom: 0;
-				}
-
-				.item-heading {
-					--item-text-background: var(--button-hover-background);
-				}
-
-				.description {
-					background-color: var(--button-hover-background);
-					border-top: 1px solid var(--button-hover-background);
-				}
-
-				.overlay {
-					opacity: 1;
-				}
-			}
-		}
-
-		.overlay {
-			background-color: var(--button-hover-background);
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			mix-blend-mode: multiply;
-			opacity: 0;
-			transition: opacity 0.3s;
-		}
-		.item-text {
-			position: absolute;
-			bottom: calc(-5 * var(--base-line-height));
-			left: 0;
-			right: 0;
-			transition: bottom 0.3s;
-		}
-
-		.item-heading {
-			--item-text-background: var(--light-background);
-			background-image: linear-gradient(
-				to top,
-				var(--item-text-background) 0%,
-				transparent 100%
-			);
-			transition: --item-text-background 0.3s;
+		p {
+			margin: 0;
 		}
 
 		.description {
-			transition:
-				background-color 0.3s,
-				border-top 0.3s,
-				color 0.3s;
+			margin: var(--space) 0;
 		}
+	}
+	.date,
+	.title {
+		margin: 0;
 	}
 </style>
