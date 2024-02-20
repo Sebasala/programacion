@@ -1,9 +1,58 @@
 ---
-const { eyebrow, title, subtitle } = Astro.props;
+const { eyebrow, title, subtitle, image, alt } = Astro.props;
 ---
 
-<h1>
-	{eyebrow ? <span class="eyebrow">{eyebrow}</span> : ''}
-	{title}
-	{subtitle ? <span class="subtitle">{subtitle}</span> : ''}
-</h1>
+<div>
+	<img src={image} alt={alt} />
+	<h1>
+		{eyebrow ? <span class="eyebrow">{eyebrow}</span> : ""}
+		{title}
+		{subtitle ? <span class="subtitle">{subtitle}</span> : ""}
+	</h1>
+</div>
+<style>
+	div {
+		mix-blend-mode: multiply;
+	}
+
+	img {
+		margin: var(--space) auto 0;
+		max-height: calc(9 * var(--space));
+		opacity: 1;
+	}
+
+	h1 {
+		background-image: linear-gradient(
+			to top,
+			var(--lighter-background),
+			transparent
+		);
+		isolation: isolate;
+		margin: calc(-9 * var(--space)) auto calc(2 * var(--space));
+		padding: calc(7 * var(--space)) 0 calc(1 * var(--space));
+	}
+
+	@media screen and (min-width: 900px) {
+		div {
+			height: calc(10 * var(--space));
+			margin: 0 auto;
+			max-width: 850px;
+			position: relative;
+		}
+
+		h1 {
+			background-image: none;
+			margin: 0;
+			padding: calc(3.5 * var(--space)) calc(10 * var(--space))
+				calc(3.5 * var(--space)) 0;
+			text-align: left;
+			width: 100%;
+		}
+
+		img {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+</style>

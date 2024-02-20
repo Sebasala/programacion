@@ -1,39 +1,68 @@
-@use 'vars';
+@use 'vars' as *;
 
-body {
-  margin: 0;
-}
-
-main {
-  padding: 0 vars.$base-line-height * 1rem;
-}
-
-section, nav {
+// Containers
+section,
+nav {
   margin: 0 auto;
 }
 
+ol,
+ul {
+  padding-left: $space * 1rem;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+main {
+  padding: 0 $space * 1rem;
+}
+
 section {
-  max-width: vars.$text-max-width;
+  max-width: $text-max-width;
 }
 
 nav {
-  max-width: vars.$text-max-width + vars.$base-line-height * 2rem;
+  max-width: $text-max-width + $space * 2rem;
+}
+
+// Elements
+h1 {
+  $hero-space: 2rem * $space;
+  margin: $hero-space 0 $hero-space;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: $space * 2rem 0 $space * 1rem;
 }
 
 pre {
-  padding: vars.$base-line-height * 0.5rem;
-  margin: vars.$base-line-height * 0.5rem 0;
-  border-radius: vars.$base-line-height * 0.5rem;
+  border-radius: $space * 0.5rem;
+  margin: $space * 0.5rem 0;
+  padding: $space * 0.5rem;
 }
 
 p {
-  margin: vars.$base-line-height * 1rem 0;
+  margin: $space * 1rem 0;
 }
 
-h2, h3, h4, h5, h6 {
-  margin: vars.$base-line-height * 2rem 0 vars.$base-line-height * 1rem;
+.button {
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0.5rem * $space 0;
+  padding: 0.5rem * $space $space * 1rem;
 }
 
-ol, ul {
-  padding-left: vars.$base-line-height * 1rem;
+.subtitle {
+  display: block;
+}
+
+.post-title {
+  margin: 0;
 }

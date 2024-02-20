@@ -1,27 +1,35 @@
 // TYPOGRAPHY
+$title-font: Anton, Arial, Helvetica, sans-serif;
+$default-font: Poppins, Arial, Helvetica, sans-serif;
 $mobile-base-font-size: 15px;
 $tablet-base-font-size: 20px;
 $scale: 1.2;
-$base-line-height: 1.5;
+$space: 1.5;
 $text-max-width: 33rem;
-$font-size-breakpoint: 490px;
 
 // COLORS
 // Pallette
-$enfasis-color: orangered;
+$enfasis-color: rgb(110, 23, 192);
+$enfasis-color-2: rgba(255, 255, 0, 0.5);
 $lighter-color: white;
-$light-color: #cfdfeb;
-$dark-color: #073154;
-$darker-color: #000000;
+$light-color: rgb(243, 243, 237);
+$dark-color: rgb(31, 31, 24);
+$darker-color: black;
 
 // Assign colors to elements
-$button-hover-background: $enfasis-color;
+$button-color: $enfasis-color-2;
+$button-text-color: $enfasis-color;
 $light-background: $light-color;
+$lighter-background: $lighter-color;
 $link-color: $enfasis-color;
 $link-hover-color-2: $lighter-color;
 $link-hover-color: $enfasis-color;
 $strong-color: $darker-color;
 $text-color: $dark-color;
+$background-text-color: $lighter-color;
 
 // OPACITY
 $low-contrast: 0.7;
+
+// Breakpoints
+$font-size-breakpoint: 490px;

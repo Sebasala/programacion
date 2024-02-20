@@ -1,14 +1,22 @@
 @use 'vars';
+@use 'mixins';
 
 :root {
-  // Layout
-  --base-line-height: #{vars.$base-line-height * 1rem};
+  // Typography
+  --font-size-xl: #{mixins.font-size(12)};
+  --line-height-xl: #{mixins.line-height(12)};
+  --title-font: #{vars.$title-font};
 
   // Colors
-  --button-hover-background: #{vars.$button-hover-background};
+  --background-text-color: #{vars.$background-text-color};
+  --button-color: #{vars.$button-color};
   --light-background: #{vars.$light-background};
-  --lighter-color: #{vars.$lighter-color};
+  --lighter-background: #{vars.$lighter-background};
   --link-hover-color-2: #{vars.$link-hover-color-2};
   --link-hover-color: #{vars.$link-hover-color};
   --low-contrast: #{vars.$low-contrast};
+  --text-color: #{vars.$text-color};
+
+  // Layout
+  --space: #{vars.$space * 1rem};
 }

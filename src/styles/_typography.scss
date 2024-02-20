@@ -9,18 +9,24 @@ html {
   }
 }
 
-body {
+body,
+.subtitle {
   font-family: Poppins, Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6,
+.subtitle {
   font-weight: 700;
 }
 
 h1 {
-  @include mixins.type-size(4);
-  font-family: Anton, Arial, Helvetica, sans-serif;
+  @include mixins.type-size(6);
+  font-family: vars.$title-font;
   text-align: center;
 }
 
@@ -28,11 +34,13 @@ h2 {
   @include mixins.type-size(2);
 }
 
-h3 {
+h3,
+.subtitle {
   @include mixins.type-size(1);
 }
 
-p, li {
+p,
+li {
   @include mixins.type-size(0);
 }
 
@@ -42,4 +50,8 @@ a {
   &:hover {
     opacity: 1;
   }
+}
+
+.button {
+  font-weight: 700;
 }
