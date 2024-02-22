@@ -136,4 +136,30 @@ const devPosts = (await getCollection("programacion")).sort(
 	.title {
 		margin: 0;
 	}
+
+	@media screen and (min-width: 1000px) {
+		h3,
+		p {
+			max-width: 33rem;
+		}
+		section {
+			max-width: 44rem;
+		}
+
+		.item-text {
+			--intersection-space: calc(11 * var(--space));
+			--gradient-space: calc(11 * var(--space));
+			background-image: linear-gradient(
+				to right,
+				transparent,
+				var(--lighter-background) var(--gradient-space)
+			);
+			padding-left: 11rem;
+			padding-top: var(--space);
+		}
+
+		img {
+			margin: 0;
+		}
+	}
 </style>
