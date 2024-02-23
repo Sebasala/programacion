@@ -2,10 +2,12 @@
 import { BASE_URL } from "../../consts.js";
 import {
 	alt,
+	alt2,
 	blogKeyword,
 	blogPath,
 	description,
 	image,
+	image2,
 	subtitle,
 } from "./consts";
 import { getCollection } from "astro:content";
@@ -55,19 +57,22 @@ const devPosts = (await getCollection("programacion")).sort(
 				}
 			</ul>
 		</section>
-		<section>
-			<h3>Tu destino definitivo para Aprender y Dominar la Programación</h3>
-			<p>
-				Bienvenido a desarrollo de software, donde exploramos el apasionante
-				mundo de la programación y el desarrollo de software. Aquí encontrarás
-				una amplia variedad de recursos, desde tutoriales paso a paso hasta
-				artículos informativos y noticias frescas sobre las últimas tendencias
-				en tecnología. Únete a nuestra comunidad de apasionados por la
-				programación y descubre consejos prácticos, trucos y estrategias para
-				perfeccionar tus habilidades y alcanzar tus metas en el emocionante
-				campo del desarrollo de software. ¡Acompáñanos en este viaje de
-				aprendizaje y crecimiento!
-			</p>
+		<section class="bottom-section">
+			<img class="image2" src={image2} alt={alt2} />
+			<div class="text">
+				<h3>Tu destino definitivo para Aprender y Dominar la Programación</h3>
+				<p>
+					Bienvenido a desarrollo de software, donde exploramos el apasionante
+					mundo de la programación y el desarrollo de software. Aquí encontrarás
+					una amplia variedad de recursos, desde tutoriales paso a paso hasta
+					artículos informativos y noticias frescas sobre las últimas tendencias
+					en tecnología. Únete a nuestra comunidad de apasionados por la
+					programación y descubre consejos prácticos, trucos y estrategias para
+					perfeccionar tus habilidades y alcanzar tus metas en el emocionante
+					campo del desarrollo de software. ¡Acompáñanos en este viaje de
+					aprendizaje y crecimiento!
+				</p>
+			</div>
 		</section>
 	</main>
 </BaseLayout>
@@ -137,6 +142,31 @@ const devPosts = (await getCollection("programacion")).sort(
 		margin: 0;
 	}
 
+	.bottom-section {
+		mix-blend-mode: multiply;
+	}
+
+	.text {
+		position: relative;
+		padding-top: calc(2 * var(--space));
+		background-image: linear-gradient(
+			to bottom,
+			transparent,
+			var(--lighter-background) calc(7 * var(--space))
+		);
+
+		h3 {
+			margin-top: 0;
+		}
+	}
+
+	.image2 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0.5;
+	}
+
 	@media screen and (min-width: 1000px) {
 		h3,
 		p {
@@ -144,6 +174,11 @@ const devPosts = (await getCollection("programacion")).sort(
 		}
 		section {
 			max-width: 44rem;
+		}
+
+		.background-text {
+			left: auto;
+			right: calc(-2 * var(--space));
 		}
 
 		.item-text {
@@ -160,6 +195,23 @@ const devPosts = (await getCollection("programacion")).sort(
 
 		img {
 			margin: 0;
+		}
+
+		.text {
+			background-image: linear-gradient(
+				to left,
+				transparent,
+				var(--lighter-background) calc(13 * var(--space))
+			);
+		}
+
+		.image2 {
+			top: auto;
+			left: auto;
+			bottom: 0;
+			right: 0;
+			opacity: 1;
+			height: calc(7 * var(--space));
 		}
 	}
 </style>
