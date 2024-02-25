@@ -1,0 +1,76 @@
+---
+const { image, alt } = Astro.props;
+---
+
+<section class="container">
+  <img src={image} alt={alt} />
+  <div class="text">
+    <h3>Tu destino definitivo para Aprender y Dominar la Programación</h3>
+    <p>
+      Bienvenido a desarrollo de software, donde exploramos el apasionante mundo
+      de la programación y el desarrollo de software. Aquí encontrarás una
+      amplia variedad de recursos, desde tutoriales paso a paso hasta artículos
+      informativos y noticias frescas sobre las últimas tendencias en
+      tecnología. Únete a nuestra comunidad de apasionados por la programación y
+      descubre consejos prácticos, trucos y estrategias para perfeccionar tus
+      habilidades y alcanzar tus metas en el emocionante campo del desarrollo de
+      software. ¡Acompáñanos en este viaje de aprendizaje y crecimiento!
+    </p>
+  </div>
+</section>
+<style>
+  section,
+  .text {
+    position: relative;
+  }
+
+  section {
+    mix-blend-mode: multiply;
+  }
+
+  img {
+    bottom: 0;
+    max-height: calc(8 * var(--space));
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .text {
+    background-image: linear-gradient(
+      to top,
+      transparent,
+      var(--lighter-background) calc(8 * var(--space))
+    );
+    margin: 0 auto;
+    padding-bottom: calc(5 * var(--space));
+  }
+
+  .container {
+    max-width: var(--text-max-width);
+  }
+
+  @media (min-width: 1000px) {
+    .container {
+      max-width: var(--container-max-width);
+    }
+
+    .text {
+      --space-factor: 5;
+      background-image: linear-gradient(
+        to left,
+        transparent,
+        var(--lighter-background) calc(17 * var(--space))
+      );
+      max-width: calc(
+        var(--text-max-width) + (var(--space-factor) - 1) * var(--space)
+      );
+      padding-bottom: calc(2 * var(--space));
+      padding-right: calc(var(--space-factor) * var(--space));
+    }
+  }
+</style>

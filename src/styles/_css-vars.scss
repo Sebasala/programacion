@@ -5,6 +5,7 @@
   // Typography
   --font-size-xl: #{mixins.font-size(12)};
   --line-height-xl: #{mixins.line-height(12)};
+  --text-max-width: #{vars.$text-max-width};
   --title-font: #{vars.$title-font};
 
   // Colors
@@ -18,5 +19,6 @@
   --text-color: #{vars.$text-color};
 
   // Layout
+  --container-max-width: #{vars.$container-max-width};
   --space: #{vars.$space * 1rem};
 }
