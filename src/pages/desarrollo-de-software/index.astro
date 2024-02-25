@@ -1,5 +1,4 @@
 ---
-import { BASE_URL } from "../../consts.js";
 import {
 	alt,
 	alt2,
@@ -12,8 +11,9 @@ import {
 } from "./consts";
 import { getCollection } from "astro:content";
 import BaseLayout from "src/layouts/BaseLayout.astro";
-import FormattedDate from "@components/FormattedDate.astro";
+import Feed from "@components/Feed.astro";
 import Hero from "@components/Hero.astro";
+import IlustratedText from "@components/IlustratedText.astro";
 
 const devPosts = (await getCollection("programacion")).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
@@ -28,190 +28,7 @@ const devPosts = (await getCollection("programacion")).sort(
 >
 	<main>
 		<Hero title={blogKeyword} subtitle={subtitle} image={image} alt={alt} />
-		<section>
-			<!-- TODO: Remover todo el contenido quemado -->
-			<h3 class="background-text">Artículos</h3>
-			<ul>
-				{
-					devPosts.map((post) => {
-						const { data, slug } = post;
-						const { alt, heroImage, pubDate, title, description } = data;
-						return (
-							<li>
-								<img src={`${BASE_URL}${heroImage}`} alt={alt} />
-								<div class="item-text">
-									<div class="item-heading">
-										<p class="date">
-											<FormattedDate date={pubDate} />
-										</p>
-										<h2 class="title">{title}</h2>
-									</div>
-									<p class="description">{description}</p>
-									<p>
-										<a href={`${BASE_URL}${blogPath}/${slug}/`}>Leer</a>
-									</p>
-								</div>
-							</li>
-						);
-					})
-				}
-			</ul>
-		</section>
-		<section class="bottom-section">
-			<img class="image2" src={image2} alt={alt2} />
-			<div class="text">
-				<h3>Tu destino definitivo para Aprender y Dominar la Programación</h3>
-				<p>
-					Bienvenido a desarrollo de software, donde exploramos el apasionante
-					mundo de la programación y el desarrollo de software. Aquí encontrarás
-					una amplia variedad de recursos, desde tutoriales paso a paso hasta
-					artículos informativos y noticias frescas sobre las últimas tendencias
-					en tecnología. Únete a nuestra comunidad de apasionados por la
-					programación y descubre consejos prácticos, trucos y estrategias para
-					perfeccionar tus habilidades y alcanzar tus metas en el emocionante
-					campo del desarrollo de software. ¡Acompáñanos en este viaje de
-					aprendizaje y crecimiento!
-				</p>
-			</div>
-		</section>
+		<Feed devPosts={devPosts} />
+		<IlustratedText image={image2} alt={alt2} />
 	</main>
 </BaseLayout>
-<style>
-	section {
-		--section-space: calc(4 * var(--space));
-		margin: var(--section-space) auto var(--section-space);
-		position: relative;
-
-		&:has(.background-text) {
-			margin: 0 auto var(--section-space);
-			padding: calc(4 * var(--space)) 0 0;
-		}
-	}
-	ul {
-		list-style: none;
-		padding: 0;
-	}
-
-	li {
-		mix-blend-mode: multiply;
-	}
-
-	img {
-		margin-left: auto;
-		max-height: calc(11 * var(--space));
-	}
-
-	a {
-		font-weight: 700;
-	}
-
-	.background-text {
-		color: var(--background-text-color);
-		font-family: var(--title-font);
-		font-size: var(--font-size-xl);
-		left: calc(-2 * var(--space));
-		line-height: var(--line-height-xl);
-		margin: 0;
-		overflow-wrap: normal;
-		overflow: hidden;
-		position: absolute;
-		top: 0;
-		width: calc(100% + 3 * var(--space));
-	}
-	.item-text {
-		--intersection-space: calc(10 * var(--space));
-		background-image: linear-gradient(
-			to top,
-			var(--lighter-background) 40%,
-			transparent
-		);
-		margin-top: calc(-1 * var(--intersection-space));
-		padding: calc(0.5 * var(--intersection-space)) 0 0;
-		position: relative;
-
-		p {
-			margin: 0;
-		}
-
-		.description {
-			margin: var(--space) 0;
-		}
-	}
-	.date,
-	.title {
-		margin: 0;
-	}
-
-	.bottom-section {
-		mix-blend-mode: multiply;
-	}
-
-	.text {
-		position: relative;
-		padding-top: calc(2 * var(--space));
-		background-image: linear-gradient(
-			to bottom,
-			transparent,
-			var(--lighter-background) calc(7 * var(--space))
-		);
-
-		h3 {
-			margin-top: 0;
-		}
-	}
-
-	.image2 {
-		position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 0.5;
-	}
-
-	@media screen and (min-width: 1000px) {
-		h3,
-		p {
-			max-width: 33rem;
-		}
-		section {
-			max-width: 44rem;
-		}
-
-		.background-text {
-			left: auto;
-			right: calc(-2 * var(--space));
-		}
-
-		.item-text {
-			--intersection-space: calc(11 * var(--space));
-			--gradient-space: calc(11 * var(--space));
-			background-image: linear-gradient(
-				to right,
-				transparent,
-				var(--lighter-background) var(--gradient-space)
-			);
-			padding-left: 11rem;
-			padding-top: var(--space);
-		}
-
-		img {
-			margin: 0;
-		}
-
-		.text {
-			background-image: linear-gradient(
-				to left,
-				transparent,
-				var(--lighter-background) calc(13 * var(--space))
-			);
-		}
-
-		.image2 {
-			top: auto;
-			left: auto;
-			bottom: 0;
-			right: 0;
-			opacity: 1;
-			height: calc(7 * var(--space));
-		}
-	}
-</style>

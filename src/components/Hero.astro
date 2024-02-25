@@ -2,7 +2,7 @@
 const { eyebrow, title, subtitle, image, alt } = Astro.props;
 ---
 
-<div>
+<div class="container">
 	<img src={image} alt={alt} />
 	<h1>
 		{eyebrow ? <span class="eyebrow">{eyebrow}</span> : ""}
@@ -12,11 +12,12 @@ const { eyebrow, title, subtitle, image, alt } = Astro.props;
 </div>
 <style>
 	div {
+		margin: var(--space) auto var(--space);
 		mix-blend-mode: multiply;
 	}
 
 	img {
-		margin: var(--space) auto 0;
+		margin: 0 auto;
 		max-height: calc(9 * var(--space));
 		opacity: 1;
 	}
@@ -28,20 +29,23 @@ const { eyebrow, title, subtitle, image, alt } = Astro.props;
 			transparent
 		);
 		isolation: isolate;
-		margin: calc(-9 * var(--space)) auto calc(2 * var(--space));
+		margin: calc(-9 * var(--space)) auto 0;
 		padding: calc(7 * var(--space)) 0 calc(1 * var(--space));
 	}
 
 	@media screen and (min-width: 1000px) {
 		div {
 			height: calc(10 * var(--space));
-			margin: 0 auto calc(2 * var(--space));
-			max-width: 850px;
+			margin: calc(2 * var(--space)) auto;
 			position: relative;
 		}
 
 		h1 {
-			background-image: none;
+			background-image: linear-gradient(
+				to left,
+				transparent,
+				var(--lighter-background) 350px
+			);
 			margin: 0;
 			padding: calc(3.5 * var(--space)) calc(10 * var(--space))
 				calc(3.5 * var(--space)) 0;
@@ -52,7 +56,8 @@ const { eyebrow, title, subtitle, image, alt } = Astro.props;
 		img {
 			position: absolute;
 			right: 0;
-			top: 0;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 	}
 </style>

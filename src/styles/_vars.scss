@@ -1,11 +1,11 @@
 // TYPOGRAPHY
 $title-font: Anton, Arial, Helvetica, sans-serif;
 $default-font: Poppins, Arial, Helvetica, sans-serif;
-$mobile-base-font-size: 15px;
-$tablet-base-font-size: 20px;
+$mobile-base-font-size: 13px;
+$tablet-base-font-size: 18px;
 $scale: 1.2;
 $space: 1.5;
-$text-max-width: 33rem;
+$text-max-width: 38rem;
 
 // COLORS
 // Pallette
@@ -31,5 +31,8 @@ $background-text-color: $lighter-color;
 // OPACITY
 $low-contrast: 0.7;
 
+// LAYOUT
+$container-max-width: $text-max-width + $space * 3rem;
+
 // Breakpoints
-$font-size-breakpoint: 490px;
+$font-size-breakpoint: 500px;

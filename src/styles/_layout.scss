@@ -16,16 +16,8 @@ body {
   overflow-x: hidden;
 }
 
-main {
-  padding: 0 $space * 1rem;
-}
-
-section {
-  max-width: $text-max-width;
-}
-
 nav {
-  max-width: $text-max-width + $space * 2rem;
+  max-width: $text-max-width;
 }
 
 // Elements
@@ -65,4 +57,14 @@ p {
 
 .post-title {
   margin: 0;
+}
+
+.text {
+  max-width: $text-max-width;
+  padding: 0 $space * 1rem;
+}
+
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
 }

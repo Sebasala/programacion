@@ -1,0 +1,124 @@
+---
+import { BASE_URL } from "@src/consts.js";
+import FormattedDate from "@components/FormattedDate.astro";
+
+const { devPosts, blogPath } = Astro.props;
+---
+
+<section class="container">
+  <!-- TODO: Remover todo el contenido quemado -->
+  <h3 class="background-text">Artículos</h3>
+  <ul>
+    {
+      devPosts.map((post) => {
+        const { data, slug } = post;
+        const { alt, heroImage, pubDate, title, description } = data;
+        return (
+          <li>
+            <img src={`${BASE_URL}${heroImage}`} alt={alt} />
+            <div class="text">
+              <div class="item-heading">
+                <p class="date">
+                  <FormattedDate date={pubDate} />
+                </p>
+                <h2 class="title">{title}</h2>
+              </div>
+              <p class="description">{description}</p>
+              <p>
+                <a href={`${BASE_URL}${blogPath}/${slug}/`}>Leer</a>
+              </p>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>
+<style>
+  section {
+    --section-space: calc(4 * var(--space));
+    margin-bottom: var(--section-space);
+    position: relative;
+
+    &:has(.background-text) {
+      padding: var(--section-space) 0 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin: 0 auto;
+    max-width: var(--text-max-width);
+    mix-blend-mode: multiply;
+    position: relative;
+  }
+
+  img {
+    left: 0;
+    max-height: calc(11 * var(--space));
+    position: absolute;
+    top: 0;
+  }
+
+  a {
+    font-weight: 700;
+  }
+
+  .background-text {
+    color: var(--background-text-color);
+    font-family: var(--title-font);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+    margin: 0;
+    overflow-wrap: normal;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    width: calc(100% + var(--space));
+  }
+
+  .date,
+  .title {
+    margin: 0;
+  }
+
+  .text {
+    padding-top: calc(5 * var(--space));
+    position: relative;
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      var(--lighter-background) calc(12 * var(--space))
+    );
+
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    li {
+      max-width: 100%;
+    }
+
+    .text {
+      --space-factor: 5;
+      padding-top: calc(2 * var(--space));
+      padding-left: calc(var(--space-factor) * var(--space));
+      max-width: calc(
+        var(--text-max-width) + (var(--space-factor) - 1) * var(--space)
+      );
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        var(--lighter-background) calc(11 * var(--space))
+      );
+    }
+  }
+</style>
