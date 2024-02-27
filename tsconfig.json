@@ -10,6 +10,9 @@
       "@layouts/*": [
         "src/layouts/*"
       ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
       "@src/*": [
         "src/*"
       ],

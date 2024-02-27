@@ -18,6 +18,7 @@ $darker-color: black;
 
 // Assign colors to elements
 $button-color: $enfasis-color-2;
+$button-shadow-color: rgba($enfasis-color, 0.2);
 $button-text-color: $enfasis-color;
 $light-background: $light-color;
 $lighter-background: $lighter-color;
@@ -27,6 +28,9 @@ $link-hover-color: $enfasis-color;
 $strong-color: $darker-color;
 $text-color: $dark-color;
 $background-text-color: $lighter-color;
+
+// Shadows
+$button-shadow: 2px 2px 4px $button-shadow-color;
 
 // OPACITY
 $low-contrast: 0.7;

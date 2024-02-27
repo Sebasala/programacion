@@ -1,6 +1,7 @@
 ---
 import { BASE_URL } from "@src/consts.js";
 import FormattedDate from "@components/FormattedDate.astro";
+import Button from "@components/Button.astro";
 
 const { devPosts, blogPath } = Astro.props;
 ---
@@ -25,7 +26,7 @@ const { devPosts, blogPath } = Astro.props;
               </div>
               <p class="description">{description}</p>
               <p>
-                <a href={`${BASE_URL}${blogPath}/${slug}/`}>Leer</a>
+                <Button href={`${BASE_URL}${blogPath}/${slug}/`} text="Leer" />
               </p>
             </div>
           </li>
@@ -62,10 +63,7 @@ const { devPosts, blogPath } = Astro.props;
     max-height: calc(11 * var(--space));
     position: absolute;
     top: 0;
-  }
-
-  a {
-    font-weight: 700;
+    border-radius: calc(4 * var(--space));
   }
 
   .background-text {
@@ -108,7 +106,7 @@ const { devPosts, blogPath } = Astro.props;
     }
 
     .text {
-      --space-factor: 5;
+      --space-factor: 8;
       padding-top: calc(2 * var(--space));
       padding-left: calc(var(--space-factor) * var(--space));
       max-width: calc(
