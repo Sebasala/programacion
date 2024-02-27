@@ -1,34 +1,16 @@
 ---
-import {
-	alt,
-	alt2,
-	blogKeyword,
-	blogPath,
-	description,
-	image,
-	image2,
-	subtitle,
-} from "./consts";
 import { getCollection } from "astro:content";
-import BaseLayout from "src/layouts/BaseLayout.astro";
-import Feed from "@components/Feed.astro";
-import Hero from "@components/Hero.astro";
-import IlustratedText from "@components/IlustratedText.astro";
+import * as content from "./content.md";
+import categories from "@pages/categories";
+import CategoryPage from "@components/CategoryPage.astro";
 
 const devPosts = (await getCollection("programacion")).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
 
-<BaseLayout
-	blogPath={blogPath}
-	description={description}
-	headerText={blogKeyword}
-	title={`${blogKeyword}: ${subtitle}`}
->
-	<main>
-		<Hero title={blogKeyword} subtitle={subtitle} image={image} alt={alt} />
-		<Feed devPosts={devPosts} />
-		<IlustratedText image={image2} alt={alt2} />
-	</main>
-</BaseLayout>
+<CategoryPage
+	category={categories["desarrollo-de-software"]}
+	content={content}
+	devPosts={devPosts}
+/>

@@ -18,6 +18,9 @@
   --low-contrast: #{vars.$low-contrast};
   --text-color: #{vars.$text-color};
 
+  // Shadows
+  --button-shadow: #{vars.$button-shadow};
+
   // Layout
   --container-max-width: #{vars.$container-max-width};
   --space: #{vars.$space * 1rem};

@@ -1,26 +1,17 @@
 ---
-import { BASE_URL } from '../consts.js';
-import BaseLayout from 'src/layouts/BaseLayout.astro';
-import { title, domainName, description, subtitle } from './consts';
-const categories = [
-	{
-		slug: 'desarrollo-de-software',
-		data: {
-			title: 'Desarrollo de Software',
-			heroImage: '/blog-placeholder-2.jpg',
-		},
-	},
-	{
-		slug: 'marketing-digital',
-		data: {
-			title: 'Marketing Digital',
-			heroImage: '/blog-placeholder-3.jpg',
-		},
-	},
-]
+import { BASE_URL } from "@src/consts.js";
+import { title, domainName, description, subtitle } from "./consts";
+import BaseLayout from "src/layouts/BaseLayout.astro";
+import categories from "./categories";
+
+const categoriesArray = Object.entries(categories);
 ---
 
-<BaseLayout title={`${title}: ${subtitle}`} description={description} headerText={domainName}>
+<BaseLayout
+	title={`${title}: ${subtitle}`}
+	description={description}
+	headerText={domainName}
+>
 	<main>
 		<div>
 			<h1>
@@ -32,11 +23,16 @@ const categories = [
 			<h6>Categorías</h6>
 			<ul>
 				{
-					categories.map((category) => (
+					categoriesArray.map((category) => (
 						<li>
-							<a href={`${BASE_URL}/${category.slug}/`}>
-								<img width={720} height={360} src={`${BASE_URL}${category.data.heroImage}`} alt="" />
-								<h2 class="category-title">{category.data.title}</h2>
+							<a href={`${BASE_URL}/${category[0]}/`}>
+								<img
+									width={720}
+									height={360}
+									src={`${BASE_URL}${category[1].image}`}
+									alt=""
+								/>
+								<h2 class="category-title">{category[1].title}</h2>
 							</a>
 						</li>
 					))
@@ -45,9 +41,29 @@ const categories = [
 		</section>
 		<section>
 			<h3>¡Bienvenido a Código y Marcas!</h3>
-			<p>Sumérgete en el fascinante mundo digital donde el código y las estrategias de marca convergen para dar forma al futuro. En nuestro blog, exploramos las intersecciones entre el desarrollo de software y el marketing digital, ofreciéndote artículos informativos, tutoriales prácticos y análisis de tendencias.</p>
-			<p>Descubre cómo las últimas tecnologías están transformando el panorama del desarrollo de software y cómo las estrategias innovadoras de marketing digital están impulsando el crecimiento de las marcas en línea. Desde consejos para optimizar tu presencia en la web hasta profundas reflexiones sobre el impacto de la tecnología en nuestra sociedad, estamos aquí para inspirarte y mantenerte actualizado en este emocionante viaje digital.</p>
-			<p>Únete a nuestra comunidad de apasionados por la tecnología, emprendedores digitales y curiosos exploradores mientras navegamos juntos por el vasto universo digital. ¡Prepárate para desafiar tus límites, expandir tu conocimiento y descubrir nuevas posibilidades en cada clic!</p>
+			<p>
+				Sumérgete en el fascinante mundo digital donde el código y las
+				estrategias de marca convergen para dar forma al futuro. En nuestro
+				blog, exploramos las intersecciones entre el desarrollo de software y el
+				marketing digital, ofreciéndote artículos informativos, tutoriales
+				prácticos y análisis de tendencias.
+			</p>
+			<p>
+				Descubre cómo las últimas tecnologías están transformando el panorama
+				del desarrollo de software y cómo las estrategias innovadoras de
+				marketing digital están impulsando el crecimiento de las marcas en
+				línea. Desde consejos para optimizar tu presencia en la web hasta
+				profundas reflexiones sobre el impacto de la tecnología en nuestra
+				sociedad, estamos aquí para inspirarte y mantenerte actualizado en este
+				emocionante viaje digital.
+			</p>
+			<p>
+				Únete a nuestra comunidad de apasionados por la tecnología,
+				emprendedores digitales y curiosos exploradores mientras navegamos
+				juntos por el vasto universo digital. ¡Prepárate para desafiar tus
+				límites, expandir tu conocimiento y descubrir nuevas posibilidades en
+				cada clic!
+			</p>
 			<p>¡Explora, aprende y crece con nosotros en Código y Marcas!</p>
 		</section>
 	</main>
