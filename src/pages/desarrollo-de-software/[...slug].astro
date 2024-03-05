@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
-import { blogPath, blogKeyword } from "./consts";
+import BlogPost from "@layouts/BlogPost.astro";
+import categories from "@pages/categories";
 
 export async function getStaticPaths() {
 	const posts = await getCollection("programacion");
@@ -11,10 +11,11 @@ export async function getStaticPaths() {
 	}));
 }
 
+const { title, blogPath } = categories["desarrollo-de-software"];
 const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost headerText={blogKeyword} blogPath={blogPath} {...post.data}>
+<BlogPost headerText={title} blogPath={blogPath} {...post.data}>
 	<Content />
 </BlogPost>

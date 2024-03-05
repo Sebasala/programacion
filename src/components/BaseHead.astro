@@ -1,8 +1,8 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.scss';
-import { BASE_URL } from '../consts.js';
+import "../styles/global.scss";
+import { BASE_URL } from "../consts.js";
 
 interface Props {
 	title: string;
@@ -12,24 +12,22 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { 
-	description,
-	image = '/blog-placeholder-1.jpg', 
-	title, 
-} = Astro.props;
+const { description, image = "/blog-placeholder-1.jpg", title } = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="icon" type="image/svg+xml" href=`${BASE_URL}/favicon.svg` />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;700&display=swap"
+	rel="stylesheet"
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
