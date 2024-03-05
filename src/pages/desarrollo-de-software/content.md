@@ -1,7 +1,7 @@
 ---
-infoTitle: 'Tu destino definitivo para Aprender y Dominar la Programación'
-infoImage: '/disquete.png'
-infoAlt: 'Disquete'
+infoTitle: Tu destino definitivo para Aprender y Dominar la Programación
+infoImage: /disquete.png
+infoAlt: Disquete
 ---
 
 Bienvenido a desarrollo de software, donde exploramos el apasionante mundo

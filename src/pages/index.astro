@@ -1,17 +1,17 @@
 ---
 import { BASE_URL } from "@src/consts.js";
-import { title, domainName, description, subtitle } from "./consts";
-import BaseLayout from "src/layouts/BaseLayout.astro";
+import * as content from "./content.md";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button.astro";
 import categories from "./categories";
+import IlustratedText from "@components/IlustratedText.astro";
 
 const categoriesArray = Object.entries(categories);
+const { title, subtitle, infoTitle, description } = content.frontmatter;
+const PageContent = await content.default;
 ---
 
-<BaseLayout
-	title={`${title}: ${subtitle}`}
-	description={description}
-	headerText={domainName}
->
+<BaseLayout title={`${title}: ${subtitle}`} description={description}>
 	<main>
 		<div>
 			<h1>
@@ -20,51 +20,85 @@ const categoriesArray = Object.entries(categories);
 			</h1>
 		</div>
 		<section>
-			<h6>Categorías</h6>
 			<ul>
 				{
 					categoriesArray.map((category) => (
 						<li>
-							<a href={`${BASE_URL}/${category[0]}/`}>
-								<img
-									width={720}
-									height={360}
-									src={`${BASE_URL}${category[1].image}`}
-									alt=""
-								/>
+							<img
+								width={720}
+								height={360}
+								src={`${BASE_URL}${category[1].image}`}
+								alt=""
+							/>
+							<div class="text">
 								<h2 class="category-title">{category[1].title}</h2>
-							</a>
+								<p>{category[1].description}</p>
+								<Button
+									href={`${BASE_URL}/${category[0]}/`}
+									text="Ver artículos"
+								/>
+							</div>
 						</li>
 					))
 				}
 			</ul>
 		</section>
-		<section>
-			<h3>¡Bienvenido a Código y Marcas!</h3>
-			<p>
-				Sumérgete en el fascinante mundo digital donde el código y las
-				estrategias de marca convergen para dar forma al futuro. En nuestro
-				blog, exploramos las intersecciones entre el desarrollo de software y el
-				marketing digital, ofreciéndote artículos informativos, tutoriales
-				prácticos y análisis de tendencias.
-			</p>
-			<p>
-				Descubre cómo las últimas tecnologías están transformando el panorama
-				del desarrollo de software y cómo las estrategias innovadoras de
-				marketing digital están impulsando el crecimiento de las marcas en
-				línea. Desde consejos para optimizar tu presencia en la web hasta
-				profundas reflexiones sobre el impacto de la tecnología en nuestra
-				sociedad, estamos aquí para inspirarte y mantenerte actualizado en este
-				emocionante viaje digital.
-			</p>
-			<p>
-				Únete a nuestra comunidad de apasionados por la tecnología,
-				emprendedores digitales y curiosos exploradores mientras navegamos
-				juntos por el vasto universo digital. ¡Prepárate para desafiar tus
-				límites, expandir tu conocimiento y descubrir nuevas posibilidades en
-				cada clic!
-			</p>
-			<p>¡Explora, aprende y crece con nosotros en Código y Marcas!</p>
-		</section>
+		<IlustratedText title={infoTitle}>
+			<PageContent />
+		</IlustratedText>
 	</main>
 </BaseLayout>
+<style>
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	li {
+		margin: calc(2 * var(--space)) 0;
+		mix-blend-mode: multiply;
+	}
+
+	img {
+		margin: 0 auto;
+		max-height: calc(12 * var(--space));
+		width: auto;
+	}
+
+	h2 {
+		margin-top: 0;
+	}
+
+	.text {
+		background-image: linear-gradient(
+			to bottom,
+			transparent,
+			var(--lighter-background) calc(6 * var(--space))
+		);
+		margin: calc(-6 * var(--space)) auto 0;
+		padding-top: calc(4 * var(--space));
+		position: relative;
+	}
+
+	@media screen and (min-width: 1023px) {
+		ul {
+			display: grid;
+			gap: var(--space);
+			grid-template-columns: repeat(2, 1fr);
+			margin: 0 auto;
+			max-width: 1390px;
+		}
+
+		li {
+			border-radius: var(--space);
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+			padding: var(--space) 0;
+		}
+
+		.text {
+			p {
+				min-height: calc(6 * var(--space));
+			}
+		}
+	}
+</style>

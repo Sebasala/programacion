@@ -10,14 +10,13 @@ $text-max-width: 38rem;
 // COLORS
 // Pallette
 $enfasis-color: rgb(110, 23, 192);
-$enfasis-color-2: rgba(255, 255, 0, 0.5);
+$enfasis-color-2: rgba(197, 197, 0, 0.5);
 $lighter-color: white;
 $light-color: rgb(243, 243, 237);
 $dark-color: rgb(31, 31, 24);
 $darker-color: black;
 
 // Assign colors to elements
-$button-color: $enfasis-color-2;
 $button-shadow-color: rgba($enfasis-color, 0.2);
 $button-text-color: $enfasis-color;
 $light-background: $light-color;

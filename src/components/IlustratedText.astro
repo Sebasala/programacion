@@ -3,7 +3,7 @@ const { image, alt, title } = Astro.props;
 ---
 
 <section class="container">
-  <img src={image} alt={alt} />
+  {image && <img src={image} alt={alt} />}
   <div class="text">
     <h3>{title}</h3>
     <slot />
@@ -47,7 +47,12 @@ const { image, alt, title } = Astro.props;
 
   @media (min-width: 1000px) {
     .container {
-      max-width: var(--container-max-width);
+      &:has(img) {
+        max-width: var(--container-max-width);
+        .text {
+          padding-right: calc(var(--space-factor) * var(--space));
+        }
+      }
     }
 
     .text {
@@ -61,7 +66,6 @@ const { image, alt, title } = Astro.props;
         var(--text-max-width) + (var(--space-factor) - 1) * var(--space)
       );
       padding-bottom: calc(2 * var(--space));
-      padding-right: calc(var(--space-factor) * var(--space));
     }
   }
 </style>
