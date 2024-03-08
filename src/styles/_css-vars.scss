@@ -22,6 +22,7 @@
 
   // Layout
   --container-max-width: #{vars.$container-max-width};
+  --share-container-max-width: #{vars.$share-container-max-width};
   --space: #{vars.$space * 1rem};
   --social-icon-size: #{mixins.font-size(2)};
   --social-button-size: #{mixins.line-height(2)};
