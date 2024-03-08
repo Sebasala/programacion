@@ -12,10 +12,10 @@
   --background-text-color: #{vars.$background-text-color};
   --light-background: #{vars.$light-background};
   --lighter-background: #{vars.$lighter-background};
-  --link-hover-color-2: #{vars.$link-hover-color-2};
-  --link-hover-color: #{vars.$link-hover-color};
+  --link-color: #{vars.$link-color};
   --low-contrast: #{vars.$low-contrast};
   --text-color: #{vars.$text-color};
+  --lighter-text-color: #{vars.$lighter-text-color};
 
   // Shadows
   --button-shadow: #{vars.$button-shadow};
@@ -23,4 +23,6 @@
   // Layout
   --container-max-width: #{vars.$container-max-width};
   --space: #{vars.$space * 1rem};
+  --social-icon-size: #{mixins.font-size(2)};
+  --social-button-size: #{mixins.line-height(2)};
 }

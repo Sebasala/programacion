@@ -1,7 +1,8 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
 import { BASE_URL } from "../consts";
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import LinkedInShare from "@components/LinkedInShare.astro";
 
 const {
 	blogPath,
@@ -11,17 +12,33 @@ const {
 	pubDate,
 	title,
 	updatedDate,
+	slug,
 } = Astro.props;
+
+const domain = Astro.site;
+
+const articleUrl = `${domain}${blogPath}/${slug}/`;
+const articleSource = "shan.lat";
 ---
 
 <BaseLayout
-	headerText={headerText}
 	blogPath={blogPath}
-	title={title}
 	description={description}
+	headerText={headerText}
+	image={heroImage}
+	title={title}
 	withHeader
 >
 	<main>
+		<div class="share">
+			<p class="label">Comparte:</p>
+			<LinkedInShare
+				articleSource={articleSource}
+				articleUrl={articleUrl}
+				description={description}
+				title={title}
+			/>
+		</div>
 		<article>
 			<div class="hero-image">
 				{
@@ -55,6 +72,30 @@ const {
 	</main>
 </BaseLayout>
 <style>
+	.share {
+		align-items: end;
+		background-image: linear-gradient(
+			0deg,
+			rgba(100%, 100%, 100%, 0) 0%,
+			var(--light-background) 100%
+		);
+		display: flex;
+		flex-flow: column nowrap;
+		padding: calc(var(--space) / 2);
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
+	.date,
+	.label {
+		margin: 0;
+	}
+
+	.label {
+		backdrop-filter: blur(5px);
+		border-radius: calc(var(--space) / 2);
+		padding-left: calc(var(--space) / 2);
+	}
 	.hero-image img {
 		max-height: 300px;
 		margin: 0 auto;
@@ -71,7 +112,6 @@ const {
 		padding-top: calc(2 * var(--space));
 	}
 	.date {
-		margin: 0;
 		text-align: center;
 	}
 	.text {
