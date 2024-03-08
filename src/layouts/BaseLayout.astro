@@ -3,7 +3,8 @@ import BaseHead from "@components/BaseHead.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 
-const { title, description, blogPath, headerText, withHeader } = Astro.props;
+const { blogPath, description, headerText, image, title, withHeader } =
+	Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +22,7 @@ const { title, description, blogPath, headerText, withHeader } = Astro.props;
 
 			gtag("config", "G-KZ0JGBWSRT");
 		</script>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={image} />
 	</head>
 	<body>
 		{withHeader && <Header text={headerText} path={blogPath ? blogPath : ""} />}
