@@ -13,6 +13,7 @@ const {
 	title,
 	updatedDate,
 	slug,
+	ogImage,
 } = Astro.props;
 
 const domain = Astro.site;
@@ -25,7 +26,7 @@ const articleSource = "shan.lat";
 	blogPath={blogPath}
 	description={description}
 	headerText={headerText}
-	image={heroImage}
+	image={ogImage}
 	title={title}
 	withHeader
 >

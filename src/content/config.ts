@@ -10,6 +10,7 @@ const programacion = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		ogImage: z.string().optional(),
 		alt: z.string().optional(),
 	}),
 });
@@ -24,6 +25,8 @@ const marketing = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
 		heroImage: z.string().optional(),
+		ogImage: z.string().optional(),
+		alt: z.string().optional(),
 	}),
 });
 
