@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.scss";
-import { BASE_URL } from "../consts.js";
+import { twitterXUser } from "@src/consts.js";
 
 interface Props {
 	title: string;
@@ -43,10 +43,15 @@ const { description, image, title } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+<meta property="og:site_name" content="Shan.lat" />
 {image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+{image && <meta property="og:image:width" content="1200" />}
+{image && <meta property="og:image:height" content="627" />}
+{image && <meta property="og:image:type" content="image/png" />}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
+<meta name="twitter:creator" content={twitterXUser} />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />

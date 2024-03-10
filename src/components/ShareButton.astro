@@ -1,0 +1,72 @@
+---
+import { twitterXUser, CHANNELS } from "@src/consts";
+import LinkedIn from "@components/LinkedIn.astro";
+import TwitterX from "@components/TwitterX.astro";
+import Whatsapp from "@components/Whatsapp.astro";
+
+const { articleSource, articleUrl, description, title, channel } = Astro.props;
+const channelQuerys = {
+  linkedin: encodeURI(
+    `mini=true&url=${articleUrl}&title=${title}&summary=${description}&source=${articleSource}`,
+  ),
+  twitterx: encodeURI(`url=${articleUrl}&text="${title}" por ${twitterXUser}`),
+  whatsapp: encodeURI(`text=${title} - ${articleUrl}`),
+};
+const channelURLs = {
+  linkedin: `https://www.linkedin.com/shareArticle?${channelQuerys.linkedin}`,
+  twitterx: `https://twitter.com/intent/post?${channelQuerys.twitterx}`,
+  whatsapp: `https://api.whatsapp.com/send?${channelQuerys.whatsapp}`,
+};
+
+const { linkedin, twitterx } = CHANNELS;
+const setIcon = (channel) => {
+  switch (channel) {
+    case linkedin:
+      return LinkedIn;
+    case twitterx:
+      return TwitterX;
+    case "whatsapp":
+      return Whatsapp;
+    default:
+      return null;
+  }
+};
+const Icon = setIcon(channel);
+---
+
+<button
+  id={`share-button-${channel}`}
+  class="share-button"
+  data-href={channelURLs[channel]}
+>
+  {Icon && <Icon />}
+</button>
+<style>
+  button {
+    align-items: center;
+    background-color: var(--link-color);
+    border-radius: 50%;
+    display: inline-flex;
+    height: var(--social-button-size);
+    justify-content: center;
+    line-height: var(--social-button-size);
+    width: var(--social-button-size);
+    border: 0;
+    cursor: pointer;
+    margin: 0 calc(var(--space) / 4);
+  }
+
+  @media screen and (min-width: 900px) {
+    button {
+      margin: calc(var(--space) / 4) 0;
+    }
+  }
+</style>
+<script>
+  const buttons = document.querySelectorAll(".share-button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      window.open(button.dataset.href, "Comparte", "width=600,height=600");
+    });
+  });
+</script>

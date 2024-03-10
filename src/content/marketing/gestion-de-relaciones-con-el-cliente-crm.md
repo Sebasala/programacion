@@ -3,7 +3,7 @@ title: 'Gestión de Relaciones con el Cliente (CRM): Lo que debes saber'
 description: 'Descubre cómo mejorar significativamente las relaciones con tus clientes en nuestra "Guía Completa de Gestión de Relaciones con el Cliente". Desde la definición de estrategias efectivas hasta la implementación de tecnologías de vanguardia, exploramos cada aspecto crucial del CRM. Obtén consejos prácticos para personalizar la experiencia del cliente, seleccionar las mejores herramientas de CRM y aprovechar la inteligencia artificial para optimizar tus interacciones comerciales. ¡Optimiza tu enfoque empresarial y construye relaciones duraderas con tus clientes hoy mismo!'
 pubDate: '2024-01-23'
 heroImage: '/cliente.png'
-ogImage: /cliente-og.png
+ogImage: /cliente-og.jpg
 alt: cliente hablando por teléfono
 ---
 

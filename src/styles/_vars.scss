@@ -17,17 +17,18 @@ $dark-color: rgb(31, 31, 24);
 $darker-color: black;
 
 // Assign colors to elements
+$background-text-color: $lighter-color;
 $button-shadow-color: rgba($enfasis-color, 0.2);
 $button-text-color: $enfasis-color;
 $light-background: $light-color;
 $lighter-background: $lighter-color;
+$lighter-text-color: $lighter-color;
 $link-color: $enfasis-color;
 $link-hover-color-2: $lighter-color;
 $link-hover-color: $enfasis-color;
 $strong-color: $darker-color;
 $text-color: $dark-color;
-$background-text-color: $lighter-color;
-$lighter-text-color: $lighter-color;
+$translucid-light-background: rgba($light-color, 0.5);
 
 // Shadows
 $button-shadow: 2px 2px 4px $button-shadow-color;
@@ -37,7 +38,7 @@ $low-contrast: 0.7;
 
 // LAYOUT
 $container-max-width: $text-max-width + $space * 3rem;
-$share-container-max-width: $text-max-width + $space * 7rem;
+$share-container-max-width: $text-max-width + $space * 8rem;
 ;
 
 // Breakpoints
