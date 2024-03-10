@@ -1,8 +1,8 @@
 ---
 import FormattedDate from "../components/FormattedDate.astro";
-import { BASE_URL } from "../consts";
+import { BASE_URL, CHANNELS } from "@src/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import LinkedInShare from "@components/LinkedInShare.astro";
+import ShareButton from "@components/ShareButton.astro";
 
 const {
 	blogPath,
@@ -18,8 +18,9 @@ const {
 
 const domain = Astro.site;
 
-const articleUrl = `${domain}${blogPath}/${slug}/`;
+const articleUrl = `${domain?.origin}${blogPath}/${slug}/`;
 const articleSource = "shan.lat";
+const channelsKeys = Object.keys(CHANNELS);
 ---
 
 <BaseLayout
@@ -31,15 +32,7 @@ const articleSource = "shan.lat";
 	withHeader
 >
 	<main>
-		<div class="share">
-			<p class="label">Comparte:</p>
-			<LinkedInShare
-				articleSource={articleSource}
-				articleUrl={articleUrl}
-				description={description}
-				title={title}
-			/>
-		</div>
+		<!-- TODO: Divide this into smaller components -->
 		<article>
 			<div class="hero-image">
 				{
@@ -53,8 +46,8 @@ const articleSource = "shan.lat";
 					)
 				}
 			</div>
-			<section class="text">
-				<div class="title">
+			<section class="content">
+				<div class="title text">
 					<p class="date">
 						<FormattedDate date={pubDate} />
 						{
@@ -65,59 +58,102 @@ const articleSource = "shan.lat";
 							)
 						}
 					</p>
+					<!-- TODO: Add subtitle so the title doesn´t appear so long -->
 					<h1 class="post-title">{title}</h1>
 				</div>
-				<slot />
+				<div class="share">
+					<p class="label">Comparte:</p>
+					{
+						channelsKeys.map((channel) => (
+							<ShareButton
+								channel={channel}
+								articleSource={articleSource}
+								articleUrl={articleUrl}
+								description={description}
+								title={title}
+							/>
+						))
+					}
+				</div>
+				<div class="text">
+					<slot />
+				</div>
 			</section>
 		</article>
 	</main>
 </BaseLayout>
 <style>
 	.share {
-		align-items: end;
-		background-image: linear-gradient(
-			0deg,
-			rgba(100%, 100%, 100%, 0) 0%,
-			var(--light-background) 100%
-		);
+		align-items: center;
+		backdrop-filter: blur(5px);
+		background-color: var(--translucid-light-background);
+		border-radius: calc(2 * var(--space));
 		display: flex;
-		flex-flow: column nowrap;
+		flex-flow: row nowrap;
 		margin: 0 auto;
 		max-width: var(--share-container-max-width);
 		padding: calc(var(--space) / 2);
 		position: sticky;
 		top: 0;
+		width: max-content;
 		z-index: 1;
 	}
 	.date,
 	.label {
-		margin: 0;
+		border-radius: calc(var(--space) / 2);
+		max-width: calc(7 * var(--space));
+	}
+
+	.date {
+		backdrop-filter: blur(5px);
+		margin: calc(var(--space) / 2) auto;
 	}
 
 	.label {
-		backdrop-filter: blur(5px);
-		border-radius: calc(var(--space) / 2);
-		padding-left: calc(var(--space) / 2);
+		font-weight: 700;
+		margin: 0 calc(var(--space) / 2) 0 0;
 	}
+
 	.hero-image img {
-		max-height: 300px;
-		margin: 0 auto;
-		width: auto;
 		border-radius: calc(4 * var(--space));
+		margin: 0 auto;
+		max-height: 300px;
+		width: auto;
 	}
+
+	.text {
+		margin: 0 auto;
+	}
+
 	.title {
-		position: relative;
 		background-image: linear-gradient(
 			180deg,
 			rgba(100%, 100%, 100%, 0) 0%,
 			var(--light-background) 100%
 		);
 		padding-top: calc(2 * var(--space));
+		position: relative;
 	}
 	.date {
 		text-align: center;
 	}
-	.text {
+	.content {
 		margin-top: calc(-7 * var(--space));
+	}
+
+	@media screen and (min-width: 900px) {
+		.content {
+			max-width: 1000px;
+		}
+
+		.share {
+			background-color: transparent;
+			flex-flow: column nowrap;
+			margin: calc(-15 * var(--space)) 0 calc(7 * var(--space)) auto;
+		}
+
+		.label {
+			margin: 0 0 calc(var(--space) / 2);
+		}
 	}
 </style>

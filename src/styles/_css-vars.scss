@@ -12,10 +12,11 @@
   --background-text-color: #{vars.$background-text-color};
   --light-background: #{vars.$light-background};
   --lighter-background: #{vars.$lighter-background};
+  --lighter-text-color: #{vars.$lighter-text-color};
   --link-color: #{vars.$link-color};
   --low-contrast: #{vars.$low-contrast};
   --text-color: #{vars.$text-color};
-  --lighter-text-color: #{vars.$lighter-text-color};
+  --translucid-light-background: #{vars.$translucid-light-background};
 
   // Shadows
   --button-shadow: #{vars.$button-shadow};
