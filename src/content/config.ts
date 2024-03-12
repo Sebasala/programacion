@@ -5,6 +5,7 @@ const programacion = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
+		subtitle: z.string().optional(),
 		description: z.string(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
@@ -20,6 +21,7 @@ const marketing = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
+		subtitle: z.string().optional(),
 		description: z.string(),
 		// Transform string to Date object
 		pubDate: z.coerce.date(),
