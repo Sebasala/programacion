@@ -9,11 +9,12 @@ const {
 	description,
 	headerText,
 	heroImage,
+	ogImage,
 	pubDate,
+	slug,
+	subtitle,
 	title,
 	updatedDate,
-	slug,
-	ogImage,
 } = Astro.props;
 
 const domain = Astro.site;
@@ -34,18 +35,17 @@ const channelsKeys = Object.keys(CHANNELS);
 	<main>
 		<!-- TODO: Divide this into smaller components -->
 		<article>
-			<div class="hero-image">
-				{
-					heroImage && (
-						<img
-							width={1020}
-							height={510}
-							src={`${BASE_URL}${heroImage}`}
-							alt=""
-						/>
-					)
-				}
-			</div>
+			{
+				heroImage && (
+					<img
+						class="hero-image"
+						width={1020}
+						height={510}
+						src={`${BASE_URL}${heroImage}`}
+						alt=""
+					/>
+				)
+			}
 			<section class="content">
 				<div class="title text">
 					<p class="date">
@@ -58,8 +58,10 @@ const channelsKeys = Object.keys(CHANNELS);
 							)
 						}
 					</p>
-					<!-- TODO: Add subtitle so the title doesn´t appear so long -->
-					<h1 class="post-title">{title}</h1>
+					<h1 class="post-title">
+						{title}
+						<span class="subtitle">{subtitle}</span>
+					</h1>
 				</div>
 				<div class="share">
 					<p class="label">Comparte:</p>
@@ -90,7 +92,7 @@ const channelsKeys = Object.keys(CHANNELS);
 		border-radius: calc(2 * var(--space));
 		display: flex;
 		flex-flow: row nowrap;
-		margin: 0 auto;
+		margin: calc(var(--space) / 2) auto;
 		max-width: var(--share-container-max-width);
 		padding: calc(var(--space) / 2);
 		position: sticky;
@@ -114,10 +116,10 @@ const channelsKeys = Object.keys(CHANNELS);
 		margin: 0 calc(var(--space) / 2) 0 0;
 	}
 
-	.hero-image img {
+	.hero-image {
 		border-radius: calc(4 * var(--space));
-		margin: 0 auto;
-		max-height: 300px;
+		margin: 0 auto calc(-11 * var(--space));
+		max-height: calc(21 * var(--space));
 		width: auto;
 	}
 
@@ -131,14 +133,15 @@ const channelsKeys = Object.keys(CHANNELS);
 			rgba(100%, 100%, 100%, 0) 0%,
 			var(--light-background) 100%
 		);
+		display: flex;
+		flex-flow: column;
+		justify-content: end;
+		min-height: calc(11 * var(--space));
 		padding-top: calc(2 * var(--space));
 		position: relative;
 	}
 	.date {
 		text-align: center;
-	}
-	.content {
-		margin-top: calc(-7 * var(--space));
 	}
 
 	@media screen and (min-width: 900px) {
@@ -149,7 +152,7 @@ const channelsKeys = Object.keys(CHANNELS);
 		.share {
 			background-color: transparent;
 			flex-flow: column nowrap;
-			margin: calc(-15 * var(--space)) 0 calc(7 * var(--space)) auto;
+			margin: calc(-10 * var(--space)) 0 calc(1 * var(--space)) auto;
 		}
 
 		.label {

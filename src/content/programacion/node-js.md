@@ -1,5 +1,6 @@
 ---
-title: 'Node.js: Revolucionando el Desarrollo Web con JavaScript'
+title: 'Node.js:'
+subtitle: Revolucionando el Desarrollo Web con JavaScript
 description: 'En este artículo explico de manera general los conceptos básicos de Node.js, desde que es hasta las mejores prácticas y consejos. Pasando por las principales características de Node.js y las ventajas de uso.'
 pubDate: '2024-01-19'
 heroImage: '/node-js.svg'
