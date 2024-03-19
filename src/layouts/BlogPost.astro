@@ -118,15 +118,15 @@ const channelsKeys = Object.keys(CHANNELS);
 		</article>
 		<style>
 			.sidebar {
-				position: sticky;
-				top: calc(-1 * var(--space));
-				max-width: max-content;
-				margin: var(--space) auto 0;
-				display: flex;
 				backdrop-filter: blur(5px);
 				background-color: var(--translucid-light-background);
 				border-radius: 0 0 calc(1.5 * var(--space)) calc(1.5 * var(--space));
+				display: flex;
+				margin: var(--space) auto 0;
+				max-width: max-content;
 				padding: 0 calc(0.25 * var(--space));
+				position: sticky;
+				top: calc(-1 * var(--space));
 			}
 
 			.share {
@@ -135,20 +135,20 @@ const channelsKeys = Object.keys(CHANNELS);
 			.share-buttons {
 				display: flex;
 				flex-flow: row nowrap;
-				width: max-content;
 				padding: calc(var(--space) / 2) 0;
+				width: max-content;
 			}
 
 			.subscribe {
+				align-items: center;
 				display: flex;
 				flex-flow: column nowrap;
-				align-items: center;
 			}
 
 			.date {
 				backdrop-filter: blur(5px);
-				margin: calc(var(--space) / 2) auto;
 				border-radius: calc(var(--space) / 2);
+				margin: calc(var(--space) / 2) auto;
 			}
 
 			.label {
@@ -188,11 +188,11 @@ const channelsKeys = Object.keys(CHANNELS);
 
 			@media screen and (min-width: 1090px) {
 				article {
+					align-items: start;
 					display: grid;
-					justify-content: center;
 					grid-template-columns: var(--text-max-width) 400px;
 					grid-template-rows: calc(22 * var(--space)) calc(5 * var(--space)) 1fr;
-					align-items: start;
+					justify-content: center;
 				}
 
 				.hero {
@@ -201,17 +201,18 @@ const channelsKeys = Object.keys(CHANNELS);
 				}
 
 				.sidebar {
+					background-color: transparent;
 					grid-column: 2 / 3;
 					grid-row: 2 / 3;
-					top: 0;
-					padding: 0 var(--space);
 					margin: var(--space) 0 0;
+					padding: 0 var(--space);
+					top: 0;
 				}
 
 				.share {
+					align-items: center;
 					display: flex;
 					flex-flow: row nowrap;
-					align-items: center;
 					margin: 0;
 				}
 
