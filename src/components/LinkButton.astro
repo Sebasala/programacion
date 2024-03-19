@@ -1,0 +1,10 @@
+---
+const { href, text } = Astro.props;
+---
+
+<a class="button" href={href}>{text}</a>
+<style>
+  .button {
+    box-shadow: var(--button-shadow);
+  }
+</style>

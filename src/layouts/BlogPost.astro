@@ -3,6 +3,9 @@ import FormattedDate from "../components/FormattedDate.astro";
 import { BASE_URL, CHANNELS } from "@src/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ShareButton from "@components/ShareButton.astro";
+import MailChimpMarketing from "@components/MailChimpMarketing.astro";
+import MailChimpDevelopment from "@components/MailChimpDevelopment.astro";
+import LinkButton from "@components/LinkButton.astro";
 
 const {
 	blogPath,
@@ -16,6 +19,9 @@ const {
 	title,
 	updatedDate,
 } = Astro.props;
+
+const isMarketing = blogPath === "/marketing-digital";
+const isDevelopment = blogPath === "/desarrollo-de-software";
 
 const domain = Astro.site;
 
@@ -35,18 +41,18 @@ const channelsKeys = Object.keys(CHANNELS);
 	<main>
 		<!-- TODO: Divide this into smaller components -->
 		<article>
-			{
-				heroImage && (
-					<img
-						class="hero-image"
-						width={1020}
-						height={510}
-						src={`${BASE_URL}${heroImage}`}
-						alt=""
-					/>
-				)
-			}
-			<section class="content">
+			<div class="hero">
+				{
+					heroImage && (
+						<img
+							class="hero-image"
+							width={1020}
+							height={510}
+							src={`${BASE_URL}${heroImage}`}
+							alt=""
+						/>
+					)
+				}
 				<div class="title text">
 					<p class="date">
 						<FormattedDate date={pubDate} />
@@ -63,100 +69,171 @@ const channelsKeys = Object.keys(CHANNELS);
 						<span class="subtitle">{subtitle}</span>
 					</h1>
 				</div>
+			</div>
+			<div class="sidebar">
 				<div class="share">
 					<p class="label">Comparte:</p>
-					{
-						channelsKeys.map((channel) => (
-							<ShareButton
-								channel={channel}
-								articleSource={articleSource}
-								articleUrl={articleUrl}
-								description={description}
-								title={title}
-							/>
-						))
-					}
+					<div class="share-buttons">
+						{
+							channelsKeys.map((channel) => (
+								<ShareButton
+									channel={channel}
+									articleSource={articleSource}
+									articleUrl={articleUrl}
+									description={description}
+									title={title}
+								/>
+							))
+						}
+					</div>
 				</div>
+				<div class="subscribe">
+					<p class="label">¿Quieres más?</p>
+					<LinkButton href="#subscribe-form" text="Suscríbete" />
+				</div>
+			</div>
+			<section class="content">
 				<div class="text">
 					<slot />
 				</div>
 			</section>
+			<div class="subscribe-form" id="subscribe-form">
+				{
+					isDevelopment && (
+						<MailChimpDevelopment
+							title="¿Te gustó este artículo?"
+							text="¡Suscribete y no te pierdas mis próximos artículos sobre desarrollo de software!"
+						/>
+					)
+				}
+				{
+					isMarketing && (
+						<MailChimpMarketing
+							title="¿Te gustó este artículo?"
+							text="¡Suscríbete y no te pierdas mis próximos artículos de marketing digital!"
+						/>
+					)
+				}
+			</div>
 		</article>
-	</main>
-</BaseLayout>
-<style>
-	.share {
-		align-items: center;
-		backdrop-filter: blur(5px);
-		background-color: var(--translucid-light-background);
-		border-radius: calc(2 * var(--space));
-		display: flex;
-		flex-flow: row nowrap;
-		margin: calc(var(--space) / 2) auto;
-		max-width: var(--share-container-max-width);
-		padding: calc(var(--space) / 2);
-		position: sticky;
-		top: 0;
-		width: max-content;
-		z-index: 1;
-	}
-	.date,
-	.label {
-		border-radius: calc(var(--space) / 2);
-		max-width: calc(7 * var(--space));
-	}
+		<style>
+			.sidebar {
+				position: sticky;
+				top: calc(-1 * var(--space));
+				max-width: max-content;
+				margin: var(--space) auto 0;
+				display: flex;
+				backdrop-filter: blur(5px);
+				background-color: var(--translucid-light-background);
+				border-radius: 0 0 calc(1.5 * var(--space)) calc(1.5 * var(--space));
+				padding: 0 calc(0.25 * var(--space));
+			}
 
-	.date {
-		backdrop-filter: blur(5px);
-		margin: calc(var(--space) / 2) auto;
-	}
+			.share {
+				margin-right: var(--space);
+			}
+			.share-buttons {
+				display: flex;
+				flex-flow: row nowrap;
+				width: max-content;
+				padding: calc(var(--space) / 2) 0;
+			}
 
-	.label {
-		font-weight: 700;
-		margin: 0 calc(var(--space) / 2) 0 0;
-	}
+			.subscribe {
+				display: flex;
+				flex-flow: column nowrap;
+				align-items: center;
+			}
 
-	.hero-image {
-		border-radius: calc(4 * var(--space));
-		margin: 0 auto calc(-11 * var(--space));
-		max-height: calc(21 * var(--space));
-		width: auto;
-	}
+			.date {
+				backdrop-filter: blur(5px);
+				margin: calc(var(--space) / 2) auto;
+				border-radius: calc(var(--space) / 2);
+			}
 
-	.text {
-		margin: 0 auto;
-	}
+			.label {
+				font-weight: 700;
+				margin: 0;
+				padding: 0 var(--space);
+				text-align: center;
+			}
 
-	.title {
-		background-image: linear-gradient(
-			180deg,
-			rgba(100%, 100%, 100%, 0) 0%,
-			var(--light-background) 100%
-		);
-		display: flex;
-		flex-flow: column;
-		justify-content: end;
-		min-height: calc(11 * var(--space));
-		padding-top: calc(2 * var(--space));
-		position: relative;
-	}
-	.date {
-		text-align: center;
-	}
+			.hero-image {
+				border-radius: calc(4 * var(--space));
+				margin: 0 auto calc(-11 * var(--space));
+				max-height: calc(21 * var(--space));
+				width: auto;
+			}
 
-	@media screen and (min-width: 900px) {
-		.content {
-			max-width: 1000px;
-		}
+			.text {
+				margin: 0 auto;
+			}
 
-		.share {
-			background-color: transparent;
-			flex-flow: column nowrap;
-			margin: calc(-10 * var(--space)) 0 calc(1 * var(--space)) auto;
-		}
+			.title {
+				background-image: linear-gradient(
+					180deg,
+					rgba(100%, 100%, 100%, 0) 0%,
+					var(--light-background) 100%
+				);
+				display: flex;
+				flex-flow: column;
+				justify-content: end;
+				min-height: calc(11 * var(--space));
+				padding-top: calc(2 * var(--space));
+				position: relative;
+			}
+			.date {
+				text-align: center;
+			}
 
-		.label {
-			margin: 0 0 calc(var(--space) / 2);
-		}
-	}
-</style>
+			@media screen and (min-width: 1090px) {
+				article {
+					display: grid;
+					justify-content: center;
+					grid-template-columns: var(--text-max-width) 400px;
+					grid-template-rows: calc(22 * var(--space)) calc(5 * var(--space)) 1fr;
+					align-items: start;
+				}
+
+				.hero {
+					grid-column: 1 / 3;
+					grid-row: 1;
+				}
+
+				.sidebar {
+					grid-column: 2 / 3;
+					grid-row: 2 / 3;
+					top: 0;
+					padding: 0 var(--space);
+					margin: var(--space) 0 0;
+				}
+
+				.share {
+					display: flex;
+					flex-flow: row nowrap;
+					align-items: center;
+					margin: 0;
+				}
+
+				.label {
+					padding-left: 0;
+				}
+
+				.content {
+					grid-column: 1;
+					grid-row: 2 / 4;
+				}
+				.subscribe {
+					display: none;
+				}
+
+				.subscribe-form {
+					grid-column: 2 / 3;
+					grid-row: 3;
+					position: sticky;
+					top: calc(4 * var(--space));
+				}
+			}
+		</style>
+	</main></BaseLayout
+>

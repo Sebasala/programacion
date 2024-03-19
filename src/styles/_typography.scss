@@ -40,7 +40,9 @@ h3,
 }
 
 p,
-li {
+li,
+input,
+label {
   @include mixins.type-size(0);
 }
 

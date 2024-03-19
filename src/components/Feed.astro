@@ -1,7 +1,7 @@
 ---
 import { BASE_URL } from "@src/consts.js";
 import FormattedDate from "@components/FormattedDate.astro";
-import Button from "@components/Button.astro";
+import LinkButton from "@components/LinkButton.astro";
 
 const { devPosts, blogPath } = Astro.props;
 ---
@@ -26,7 +26,10 @@ const { devPosts, blogPath } = Astro.props;
               </div>
               <p class="description">{description}</p>
               <p>
-                <Button href={`${BASE_URL}${blogPath}/${slug}/`} text="Leer" />
+                <LinkButton
+                  href={`${BASE_URL}${blogPath}/${slug}/`}
+                  text="Leer"
+                />
               </p>
             </div>
           </li>

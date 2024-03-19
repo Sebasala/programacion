@@ -2,7 +2,7 @@
 import { BASE_URL } from "@src/consts.js";
 import * as content from "./content.md";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Button from "@components/Button.astro";
+import LinkButton from "@components/LinkButton.astro";
 import categories from "./categories";
 import IlustratedText from "@components/IlustratedText.astro";
 
@@ -33,7 +33,7 @@ const PageContent = await content.default;
 							<div class="text">
 								<h2 class="category-title">{category[1].title}</h2>
 								<p>{category[1].description}</p>
-								<Button
+								<LinkButton
 									href={`${BASE_URL}/${category[0]}/`}
 									text="Ver artículos"
 								/>

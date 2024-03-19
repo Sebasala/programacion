@@ -29,6 +29,7 @@ $link-hover-color: $enfasis-color;
 $strong-color: $darker-color;
 $text-color: $dark-color;
 $translucid-light-background: rgba($light-color, 0.5);
+$input-border-color: rgba($darker-color, 0.2);
 
 // Shadows
 $button-shadow: 2px 2px 4px $button-shadow-color;
@@ -39,7 +40,7 @@ $low-contrast: 0.7;
 // LAYOUT
 $container-max-width: $text-max-width + $space * 3rem;
 $share-container-max-width: $text-max-width + $space * 8rem;
-;
+$post-container-max-width: 1084px;
 
 // Breakpoints
 $font-size-breakpoint: 500px;

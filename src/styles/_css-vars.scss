@@ -5,6 +5,8 @@
   // Typography
   --font-size-xl: #{mixins.font-size(12)};
   --line-height-xl: #{mixins.line-height(12)};
+  --font-size-2: #{mixins.font-size(2)};
+  --line-height-2: #{mixins.line-height(2)};
   --text-max-width: #{vars.$text-max-width};
   --title-font: #{vars.$title-font};
 
@@ -17,6 +19,7 @@
   --low-contrast: #{vars.$low-contrast};
   --text-color: #{vars.$text-color};
   --translucid-light-background: #{vars.$translucid-light-background};
+  --input-border-color: #{vars.$input-border-color};
 
   // Shadows
   --button-shadow: #{vars.$button-shadow};
