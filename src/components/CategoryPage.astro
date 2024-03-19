@@ -2,11 +2,17 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Feed from "@components/Feed.astro";
 import Hero from "@components/Hero.astro";
+import MailChimpDevelopment from "@components/MailChimpDevelopment.astro";
+import MailChimpMarketing from "@components/MailChimpMarketing.astro";
 import IlustratedText from "@components/IlustratedText.astro";
 
 const { category, devPosts, content } = Astro.props;
 const { infoTitle, infoImage, infoAlt } = content.frontmatter;
 const { alt, blogPath, description, image, subtitle, title } = category;
+
+const isMarketing = blogPath === "/marketing-digital";
+const isDevelopment = blogPath === "/desarrollo-de-software";
+
 const PageContent = await content.default;
 ---
 
@@ -19,6 +25,22 @@ const PageContent = await content.default;
   <main>
     <Hero title={title} subtitle={subtitle} image={image} alt={alt} />
     <Feed devPosts={devPosts} blogPath={blogPath} />
+    {
+      isDevelopment && (
+        <MailChimpDevelopment
+          title="¿Te gusta el desarrollo de software?"
+          text="¡Suscribete y no te pierdas mis próximos artículos sobre desarrollo de software!"
+        />
+      )
+    }
+    {
+      isMarketing && (
+        <MailChimpMarketing
+          title="¿Te gusta el marketing digital?"
+          text="¡Suscríbete y no te pierdas mis próximos artículos de marketing digital!"
+        />
+      )
+    }
     <IlustratedText title={infoTitle} image={infoImage} alt={infoAlt}>
       <PageContent />
     </IlustratedText>

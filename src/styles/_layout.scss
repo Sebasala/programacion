@@ -17,7 +17,7 @@ body {
 }
 
 nav {
-  max-width: $text-max-width;
+  max-width: $post-container-max-width;
 }
 
 // Elements
@@ -47,6 +47,7 @@ p {
 .button {
   border-radius: 50%;
   display: inline-block;
+  font-weight: 700;
   margin: 0.5rem * $space 0;
   padding: 0.5rem * $space $space * 1rem;
 }

@@ -1,13 +1,13 @@
 ---
 import { BASE_URL } from "@src/consts.js";
-import Button from "@components/Button.astro";
+import LinkButton from "@components/LinkButton.astro";
 
 const { text, path } = Astro.props;
 ---
 
 <header>
 	<nav>
-		<Button text={text} href={`${BASE_URL}${path}`} />
+		<LinkButton text={text} href={`${BASE_URL}${path}`} />
 	</nav>
 </header>
 <style>
