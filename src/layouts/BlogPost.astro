@@ -8,6 +8,7 @@ import MailChimpDevelopment from "@components/MailChimpDevelopment.astro";
 import LinkButton from "@components/LinkButton.astro";
 
 const {
+	author,
 	blogPath,
 	description,
 	headerText,
@@ -31,11 +32,13 @@ const channelsKeys = Object.keys(CHANNELS);
 ---
 
 <BaseLayout
+	author={author}
 	blogPath={blogPath}
 	description={description}
 	headerText={headerText}
 	image={ogImage}
-	title={title}
+	pubDate={pubDate}
+	title={`${title}: ${subtitle}`}
 	withHeader
 >
 	<main>
@@ -65,7 +68,7 @@ const channelsKeys = Object.keys(CHANNELS);
 						}
 					</p>
 					<h1 class="post-title">
-						{title}
+						{title}:
 						<span class="subtitle">{subtitle}</span>
 					</h1>
 				</div>
