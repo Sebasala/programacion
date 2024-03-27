@@ -1,0 +1,72 @@
+---
+import FormattedDate from "@components/FormattedDate.astro";
+import { BASE_URL } from "@src/consts";
+
+const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
+---
+
+<div class="hero">
+  {
+    heroImage && (
+      <img
+        class="hero-image"
+        width={1020}
+        height={510}
+        src={`${BASE_URL}${heroImage}`}
+        alt=""
+      />
+    )
+  }
+  <div class="title text">
+    <p class="date">
+      <FormattedDate date={pubDate} />
+      {
+        updatedDate && (
+          <div class="last-updated-on">
+            Last updated on <FormattedDate date={updatedDate} />
+          </div>
+        )
+      }
+    </p>
+    <h1 class="post-title">
+      {title}:
+      <span class="subtitle">{subtitle}</span>
+    </h1>
+  </div>
+</div>
+<style>
+  .hero {
+    margin: 0 auto;
+  }
+  .hero-image {
+    border-radius: calc(4 * var(--space));
+    margin: 0 auto calc(-11 * var(--space));
+    max-height: calc(21 * var(--space));
+    width: auto;
+  }
+
+  .date {
+    backdrop-filter: blur(5px);
+    border-radius: calc(var(--space) / 2);
+    margin: calc(var(--space) / 2) auto;
+    text-align: center;
+  }
+
+  .title {
+    background-image: linear-gradient(
+      180deg,
+      rgba(100%, 100%, 100%, 0) 0%,
+      var(--light-background) 100%
+    );
+    display: flex;
+    flex-flow: column;
+    justify-content: end;
+    min-height: calc(11 * var(--space));
+    padding-top: calc(2 * var(--space));
+    position: relative;
+  }
+
+  .text {
+    margin: 0 auto;
+  }
+</style>
