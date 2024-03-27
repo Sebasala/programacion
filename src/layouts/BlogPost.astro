@@ -1,11 +1,11 @@
 ---
-import FormattedDate from "../components/FormattedDate.astro";
-import { BASE_URL, CHANNELS } from "@src/consts";
+import { CHANNELS } from "@src/consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ShareButton from "@components/ShareButton.astro";
 import MailChimpMarketing from "@components/MailChimpMarketing.astro";
 import MailChimpDevelopment from "@components/MailChimpDevelopment.astro";
 import LinkButton from "@components/LinkButton.astro";
+import PostHero from "@components/PostHero.astro";
 
 const {
 	author,
@@ -42,81 +42,60 @@ const channelsKeys = Object.keys(CHANNELS);
 	withHeader
 >
 	<main>
-		<!-- TODO: Divide this into smaller components -->
 		<article>
-			<div class="hero">
-				{
-					heroImage && (
-						<img
-							class="hero-image"
-							width={1020}
-							height={510}
-							src={`${BASE_URL}${heroImage}`}
-							alt=""
-						/>
-					)
-				}
-				<div class="title text">
-					<p class="date">
-						<FormattedDate date={pubDate} />
-						{
-							updatedDate && (
-								<div class="last-updated-on">
-									Last updated on <FormattedDate date={updatedDate} />
-								</div>
-							)
-						}
-					</p>
-					<h1 class="post-title">
-						{title}:
-						<span class="subtitle">{subtitle}</span>
-					</h1>
-				</div>
-			</div>
-			<div class="sidebar">
-				<div class="share">
-					<p class="label">Comparte:</p>
-					<div class="share-buttons">
-						{
-							channelsKeys.map((channel) => (
-								<ShareButton
-									channel={channel}
-									articleSource={articleSource}
-									articleUrl={articleUrl}
-									description={description}
-									title={title}
-								/>
-							))
-						}
+			<PostHero
+				heroImage={heroImage}
+				pubDate={pubDate}
+				updatedDate={updatedDate}
+				title={title}
+				subtitle={subtitle}
+			/>
+			<div class="grid">
+				<div class="sidebar">
+					<div class="share">
+						<p class="label">Comparte:</p>
+						<div class="share-buttons">
+							{
+								channelsKeys.map((channel) => (
+									<ShareButton
+										channel={channel}
+										articleSource={articleSource}
+										articleUrl={articleUrl}
+										description={description}
+										title={title}
+									/>
+								))
+							}
+						</div>
+					</div>
+					<div class="subscribe">
+						<p class="label">¿Quieres más?</p>
+						<LinkButton href="#subscribe-form" text="Suscríbete" />
 					</div>
 				</div>
-				<div class="subscribe">
-					<p class="label">¿Quieres más?</p>
-					<LinkButton href="#subscribe-form" text="Suscríbete" />
+				<section class="content">
+					<div class="text">
+						<slot />
+					</div>
+				</section>
+				<div class="subscribe-form" id="subscribe-form">
+					{
+						isDevelopment && (
+							<MailChimpDevelopment
+								title="¿Te gustó este artículo?"
+								text="¡Suscribete y no te pierdas mis próximos artículos sobre desarrollo de software!"
+							/>
+						)
+					}
+					{
+						isMarketing && (
+							<MailChimpMarketing
+								title="¿Te gustó este artículo?"
+								text="¡Suscríbete y no te pierdas mis próximos artículos de marketing digital!"
+							/>
+						)
+					}
 				</div>
-			</div>
-			<section class="content">
-				<div class="text">
-					<slot />
-				</div>
-			</section>
-			<div class="subscribe-form" id="subscribe-form">
-				{
-					isDevelopment && (
-						<MailChimpDevelopment
-							title="¿Te gustó este artículo?"
-							text="¡Suscribete y no te pierdas mis próximos artículos sobre desarrollo de software!"
-						/>
-					)
-				}
-				{
-					isMarketing && (
-						<MailChimpMarketing
-							title="¿Te gustó este artículo?"
-							text="¡Suscríbete y no te pierdas mis próximos artículos de marketing digital!"
-						/>
-					)
-				}
 			</div>
 		</article>
 		<style>
@@ -148,12 +127,6 @@ const channelsKeys = Object.keys(CHANNELS);
 				flex-flow: column nowrap;
 			}
 
-			.date {
-				backdrop-filter: blur(5px);
-				border-radius: calc(var(--space) / 2);
-				margin: calc(var(--space) / 2) auto;
-			}
-
 			.label {
 				font-weight: 700;
 				margin: 0;
@@ -161,52 +134,18 @@ const channelsKeys = Object.keys(CHANNELS);
 				text-align: center;
 			}
 
-			.hero-image {
-				border-radius: calc(4 * var(--space));
-				margin: 0 auto calc(-11 * var(--space));
-				max-height: calc(21 * var(--space));
-				width: auto;
-			}
-
-			.text {
-				margin: 0 auto;
-			}
-
-			.title {
-				background-image: linear-gradient(
-					180deg,
-					rgba(100%, 100%, 100%, 0) 0%,
-					var(--light-background) 100%
-				);
-				display: flex;
-				flex-flow: column;
-				justify-content: end;
-				min-height: calc(11 * var(--space));
-				padding-top: calc(2 * var(--space));
-				position: relative;
-			}
-			.date {
-				text-align: center;
-			}
-
 			@media screen and (min-width: 1090px) {
-				article {
+				.grid {
 					align-items: start;
 					display: grid;
 					grid-template-columns: var(--text-max-width) 400px;
-					grid-template-rows: calc(22 * var(--space)) calc(5 * var(--space)) 1fr;
+					grid-template-rows: calc(5 * var(--space)) 1fr;
 					justify-content: center;
 				}
-
-				.hero {
-					grid-column: 1 / 3;
-					grid-row: 1;
-				}
-
 				.sidebar {
 					background-color: transparent;
 					grid-column: 2 / 3;
-					grid-row: 2 / 3;
+					grid-row: 1 / 3;
 					margin: var(--space) 0 0;
 					padding: 0 var(--space);
 					top: 0;
@@ -225,7 +164,7 @@ const channelsKeys = Object.keys(CHANNELS);
 
 				.content {
 					grid-column: 1;
-					grid-row: 2 / 4;
+					grid-row: 1 / 3;
 				}
 				.subscribe {
 					display: none;
@@ -233,7 +172,7 @@ const channelsKeys = Object.keys(CHANNELS);
 
 				.subscribe-form {
 					grid-column: 2 / 3;
-					grid-row: 3;
+					grid-row: 2;
 					position: sticky;
 					top: calc(4 * var(--space));
 				}
