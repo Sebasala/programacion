@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import * as content from "@content/pages/estilo-de-vida/content.md";
+import categories from "@pages/categories";
+import CategoryPage from "@components/CategoryPage.astro";
+
+const devPosts = (await getCollection("vida")).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+);
+---
+
+<CategoryPage
+	category={categories["estilo-de-vida"]}
+	content={content}
+	devPosts={devPosts}
+/>
