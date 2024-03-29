@@ -29,8 +29,9 @@ const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
       }
     </p>
     <h1 class="post-title">
-      {title}:
-      <span class="subtitle">{subtitle}</span>
+      {title}
+      {subtitle && ":"}
+      {subtitle && <span class="subtitle">{subtitle}</span>}
     </h1>
   </div>
 </div>

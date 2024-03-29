@@ -17,8 +17,8 @@ const collectionSchema = {
 	}),
 }
 
-const programacion = defineCollection(collectionSchema);
-
 const marketing = defineCollection(collectionSchema);
+const programacion = defineCollection(collectionSchema);
+const vida = defineCollection(collectionSchema);
 
-export const collections = { programacion, marketing };
+export const collections = { programacion, marketing, vida };

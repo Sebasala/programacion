@@ -22,7 +22,8 @@ const { devPosts, blogPath } = Astro.props;
                   <FormattedDate date={pubDate} />
                 </p>
                 <h2 class="title">
-                  {title}: {subtitle}
+                  {title}
+                  {subtitle && `: ${subtitle}`}
                 </h2>
               </div>
               <p class="description">{description}</p>
