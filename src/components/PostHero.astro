@@ -29,8 +29,7 @@ const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
       }
     </p>
     <h1 class="post-title">
-      {title}
-      {subtitle && ":"}
+      {title}{subtitle && ":"}
       {subtitle && <span class="subtitle">{subtitle}</span>}
     </h1>
   </div>
@@ -43,6 +42,7 @@ const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
     border-radius: calc(4 * var(--space));
     margin: 0 auto calc(-11 * var(--space));
     max-height: calc(21 * var(--space));
+    max-width: var(--text-max-width);
     width: auto;
   }
 
