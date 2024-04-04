@@ -39,7 +39,6 @@ const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
     margin: 0 auto;
   }
   .hero-image {
-    border-radius: calc(4 * var(--space));
     margin: 0 auto calc(-11 * var(--space));
     max-height: calc(21 * var(--space));
     max-width: var(--text-max-width);
@@ -65,9 +64,17 @@ const { heroImage, pubDate, updatedDate, title, subtitle } = Astro.props;
     min-height: calc(11 * var(--space));
     padding-top: calc(2 * var(--space));
     position: relative;
+    top: 1px;
   }
 
   .text {
     margin: 0 auto;
+  }
+
+  @media screen and (min-width: 630px) {
+    .hero-image {
+      max-width: 630px;
+      border-radius: calc(4 * var(--space));
+    }
   }
 </style>
