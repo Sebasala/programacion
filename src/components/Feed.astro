@@ -13,6 +13,7 @@ const { devPosts, blogPath } = Astro.props;
       devPosts.map((post) => {
         const { data, slug } = post;
         const { alt, description, heroImage, pubDate, subtitle, title } = data;
+        const fullTitle = `${title}${subtitle ? `: ${subtitle}` : ""}`;
         return (
           <li>
             <img src={`${BASE_URL}${heroImage}`} alt={alt} />
@@ -21,10 +22,7 @@ const { devPosts, blogPath } = Astro.props;
                 <p class="date">
                   <FormattedDate date={pubDate} />
                 </p>
-                <h2 class="title">
-                  {title}
-                  {subtitle && `: ${subtitle}`}
-                </h2>
+                <h2 class="title">{fullTitle}</h2>
               </div>
               <p class="description">{description}</p>
               <p>
